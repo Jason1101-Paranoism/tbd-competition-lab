@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBD 競賽地圖｜2026–2027 — Low-Pressure Competition Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1A33;
+  --ink-soft:#142143;
+  --mid:#5A6080;
+  --line:#D8D6E3;
+  --bg:#F5F3EC;
+  --bg-card:#FFFFFF;
+  --accent:#1A5D94;
+  --yellow:#FAB748;
+  --red:#C24A3F;
+  --green:#3F7A5A;
+  --serif-en:'Fraunces',serif;
+  --serif-tc:'Noto Serif TC',serif;
+  --sans:'Manrope','Noto Sans TC',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--ink);
+  line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(245,243,236,.92);backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1320px;margin:0 auto;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand-mark{font-family:var(--serif-en);font-weight:900;font-size:22px;color:var(--ink);letter-spacing:-.02em}
+.brand-sub{font-family:var(--mono);font-size:11px;color:var(--mid);text-transform:uppercase;letter-spacing:.12em}
+.nav-back{
+  font-family:var(--mono);font-size:12px;color:var(--mid);
+  letter-spacing:.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.nav-back:hover{color:var(--ink)}
+
+/* HEADER */
+.page-head{
+  padding:80px 28px 60px;max-width:1320px;margin:0 auto;
+}
+.head-meta{
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  text-transform:uppercase;letter-spacing:.2em;margin-bottom:24px;
+  display:flex;align-items:center;gap:10px;
+}
+.head-meta::before{content:"";width:32px;height:1px;background:var(--ink)}
+.page-title{
+  font-family:var(--serif-tc);font-weight:900;
+  font-size:clamp(40px,6vw,76px);line-height:1.05;letter-spacing:-.02em;
+}
+.page-title .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  display:block;color:var(--accent);font-size:.55em;
+  margin-top:8px;letter-spacing:0;
+}
+.page-lead{
+  margin-top:24px;max-width:780px;
+  font-size:18px;line-height:1.7;color:var(--ink-soft);
+}
+.page-lead strong{color:var(--ink)}
+
+/* SUMMARY BAR */
+.summary-bar{
+  margin-top:48px;background:var(--ink);color:#fff;
+  padding:32px 36px;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;
+}
+@media (max-width:860px){.summary-bar{grid-template-columns:repeat(2,1fr);gap:24px;padding:28px}}
+.sum-item{}
+.sum-num{
+  font-family:var(--mono);font-weight:700;font-size:38px;line-height:1;color:var(--yellow);
+}
+.sum-label{
+  margin-top:8px;font-family:var(--mono);font-size:11px;
+  color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:.15em;
+}
+
+/* 3-ARM STRATEGY */
+.strategy{
+  padding:80px 28px;max-width:1320px;margin:0 auto;
+}
+.section-tag{
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  text-transform:uppercase;letter-spacing:.2em;margin-bottom:24px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-tag::before{content:"";width:32px;height:1px;background:var(--ink)}
+.section-title{
+  font-family:var(--serif-tc);font-weight:900;
+  font-size:clamp(28px,3.8vw,48px);line-height:1.15;letter-spacing:-.02em;
+}
+.section-title .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  display:block;color:var(--accent);font-size:.55em;margin-top:8px;letter-spacing:0;
+}
+.section-lead{
+  margin-top:18px;font-size:16px;line-height:1.7;color:var(--ink-soft);
+  max-width:740px;
+}
+
+.strat-grid{
+  margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+@media (max-width:860px){.strat-grid{grid-template-columns:1fr}}
+.strat-card{
+  background:var(--bg-card);border:1px solid var(--line);
+  padding:32px;position:relative;
+}
+.strat-tag{
+  display:inline-block;padding:4px 12px;
+  background:var(--ink);color:#fff;
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.strat-tag.intl{background:var(--accent)}
+.strat-tag.edtech{background:var(--yellow);color:var(--ink)}
+.strat-title{
+  font-family:var(--serif-tc);font-weight:700;font-size:22px;
+  margin-bottom:8px;line-height:1.3;
+}
+.strat-title .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:14px;color:var(--mid);display:block;margin-top:4px;letter-spacing:0;
+}
+.strat-resource{
+  margin-top:16px;font-family:var(--mono);font-size:11px;
+  color:var(--mid);letter-spacing:.05em;
+}
+.strat-resource strong{color:var(--ink);font-family:var(--sans);font-weight:700;font-size:14px}
+.strat-list{margin-top:18px;list-style:none}
+.strat-list li{
+  padding:8px 0;font-size:13px;color:var(--ink-soft);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.strat-list li::before{
+  content:"●";color:var(--accent);font-size:10px;flex-shrink:0;margin-top:4px;
+}
+
+/* TIMELINE */
+.timeline{
+  padding:80px 28px;max-width:1320px;margin:0 auto;
+}
+.timeline-bar{
+  margin-top:48px;position:relative;
+  display:grid;grid-template-columns:repeat(13,1fr);
+  border:1px solid var(--line);background:var(--bg-card);
+  padding:0;
+}
+.tl-month{
+  border-right:1px solid var(--line);padding:14px 8px;
+  font-family:var(--mono);font-size:10px;color:var(--mid);
+  letter-spacing:.08em;text-align:center;text-transform:uppercase;
+  min-height:48px;
+}
+.tl-month:last-child{border-right:none}
+.tl-month.qtr-end{background:#FAF8F1}
+
+.timeline-events{
+  margin-top:24px;display:flex;flex-direction:column;gap:0;
+  border:1px solid var(--line);background:var(--bg-card);
+}
+.tl-evt{
+  padding:18px 24px;border-bottom:1px solid var(--line);
+  display:grid;grid-template-columns:140px 1fr auto;gap:24px;align-items:center;
+}
+.tl-evt:last-child{border-bottom:none}
+.tl-evt:hover{background:#FAF8F1}
+@media (max-width:760px){
+  .tl-evt{grid-template-columns:1fr;gap:6px;padding:16px 20px}
+}
+.tl-date{
+  font-family:var(--mono);font-weight:600;font-size:13px;color:var(--accent);
+  letter-spacing:.04em;
+}
+.tl-name{font-family:var(--serif-tc);font-weight:600;font-size:16px;color:var(--ink)}
+.tl-name .stage{
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  font-weight:400;margin-left:8px;letter-spacing:.05em;
+}
+.tl-tag{
+  font-family:var(--mono);font-size:10px;
+  padding:4px 10px;border:1px solid var(--line);
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);
+  white-space:nowrap;
+}
+.tl-tag.flagship{background:var(--yellow);border-color:var(--yellow);color:var(--ink);font-weight:700}
+.tl-tag.intl{background:var(--accent);border-color:var(--accent);color:#fff}
+.tl-tag.edtech{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* TOP 10 TABLE */
+.top10{padding:80px 28px;max-width:1320px;margin:0 auto}
+.top10-table{
+  margin-top:48px;border:1px solid var(--line);background:var(--bg-card);
+  overflow-x:auto;
+}
+.top10-table table{
+  width:100%;border-collapse:collapse;min-width:760px;
+}
+.top10-table th{
+  background:var(--ink);color:#fff;
+  font-family:var(--mono);font-size:11px;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:16px 14px;text-align:left;
+  border-right:1px solid rgba(255,255,255,.1);
+}
+.top10-table th:last-child{border-right:none}
+.top10-table td{
+  padding:18px 14px;border-bottom:1px solid var(--line);
+  border-right:1px solid var(--line);font-size:14px;vertical-align:top;
+}
+.top10-table td:last-child{border-right:none}
+.top10-table tr:last-child td{border-bottom:none}
+.top10-table tr:hover{background:#FAF8F1}
+.top10-table .rank{
+  font-family:var(--mono);font-weight:700;font-size:18px;color:var(--accent);
+}
+.top10-table .name{font-family:var(--serif-tc);font-weight:700;color:var(--ink);font-size:15px}
+.top10-table .name .en{
+  display:block;font-family:var(--serif-en);font-style:italic;font-weight:500;
+  font-size:12px;color:var(--mid);margin-top:2px;letter-spacing:0;
+}
+.fit-pill{
+  display:inline-block;padding:3px 10px;font-family:var(--mono);
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+}
+.fit-extreme{background:var(--yellow);color:var(--ink);font-weight:700}
+.fit-high{background:var(--accent);color:#fff}
+.fit-mid{background:var(--line);color:var(--ink)}
+.fit-low{background:transparent;color:var(--mid);border:1px solid var(--line)}
+.must{
+  font-family:var(--mono);font-weight:700;font-size:11px;color:var(--red);
+  letter-spacing:.1em;
+}
+
+/* DETAILED CARDS */
+.details-section{padding:80px 28px;max-width:1320px;margin:0 auto}
+.detail-grid{
+  margin-top:48px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;
+}
+@media (max-width:860px){.detail-grid{grid-template-columns:1fr}}
+.detail{
+  background:var(--bg-card);border:1px solid var(--line);
+  padding:32px;position:relative;display:flex;flex-direction:column;gap:16px;
+}
+.detail-top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+}
+.detail-rank{
+  font-family:var(--mono);font-weight:700;font-size:36px;color:var(--yellow);line-height:1;
+}
+.detail-tag-group{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.detail-name{
+  font-family:var(--serif-tc);font-weight:700;font-size:24px;line-height:1.25;color:var(--ink);
+}
+.detail-name .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:15px;color:var(--mid);display:block;margin-top:4px;letter-spacing:0;
+}
+.detail-meta{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  padding:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.dm-label{
+  font-family:var(--mono);font-size:9px;color:var(--mid);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;
+}
+.dm-value{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--ink)}
+.detail-body{font-size:14px;line-height:1.7;color:var(--ink-soft)}
+.detail-body strong{color:var(--ink)}
+.detail-foot{
+  margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);
+  font-family:var(--mono);font-size:11px;color:var(--mid);letter-spacing:.05em;
+}
+.detail-foot strong{color:var(--accent);font-family:var(--sans);font-weight:700}
+
+/* AVOID SECTION */
+.avoid{
+  background:var(--ink);color:#fff;padding:80px 28px;
+}
+.avoid-inner{max-width:1320px;margin:0 auto}
+.avoid .section-title{color:#fff}
+.avoid .section-title .en{color:var(--yellow)}
+.avoid .section-lead{color:rgba(255,255,255,.7)}
+.avoid .section-tag{color:rgba(255,255,255,.6)}
+.avoid .section-tag::before{background:var(--yellow)}
+.avoid-grid{
+  margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+@media (max-width:860px){.avoid-grid{grid-template-columns:1fr}}
+.avoid-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);
+  padding:28px;
+}
+.avoid-card-tag{
+  display:inline-block;padding:3px 10px;background:var(--red);color:#fff;
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;
+  text-transform:uppercase;margin-bottom:14px;
+}
+.avoid-card-name{
+  font-family:var(--serif-tc);font-weight:700;font-size:20px;
+  color:#fff;margin-bottom:8px;
+}
+.avoid-card-name .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:13px;color:rgba(255,255,255,.55);display:block;margin-top:2px;letter-spacing:0;
+}
+.avoid-card-body{font-size:13px;line-height:1.65;color:rgba(255,255,255,.78);margin-top:12px}
+
+/* FINAL CTA */
+.final-cta{
+  padding:80px 28px;max-width:1320px;margin:0 auto;text-align:center;
+}
+.final-cta-title{
+  font-family:var(--serif-tc);font-weight:900;
+  font-size:clamp(28px,4vw,44px);line-height:1.2;
+}
+.final-cta-title .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:.55em;color:var(--accent);display:block;margin-top:8px;letter-spacing:0;
+}
+.final-cta-sub{
+  margin-top:18px;font-size:16px;color:var(--ink-soft);max-width:640px;margin-left:auto;margin-right:auto;
+}
+.final-cta-btns{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+.btn-primary,.btn-secondary{
+  padding:16px 32px;font-size:15px;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--ink);transition:all .25s;letter-spacing:.02em;
+}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:var(--yellow);color:var(--ink);border-color:var(--yellow);transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--ink)}
+.btn-secondary{background:transparent;color:var(--ink)}
+.btn-secondary:hover{background:var(--ink);color:#fff;transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--accent)}
+
+/* FOOTER */
+footer{
+  background:var(--bg);padding:48px 28px;border-top:1px solid var(--line);
+}
+.foot-inner{
+  max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;
+  align-items:center;gap:24px;flex-wrap:wrap;
+}
+.foot-brand{font-family:var(--serif-en);font-weight:900;font-size:20px;color:var(--ink)}
+.foot-meta{font-family:var(--mono);font-size:11px;color:var(--mid);letter-spacing:.1em}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-mark">TBD.</span>
+      <span class="brand-sub">Competition Map · 2026–2027</span>
+    </div>
+    <a href="index.html" class="nav-back">
+      ← 回到主頁
+    </a>
+  </div>
+</nav>
+
+<!-- HEAD -->
+<section class="page-head">
+  <div class="head-meta">
+    <span>Strategic Reference Document · Public Orientation Edition</span>
+  </div>
+  <h1 class="page-title">
+    2026–2027 競賽地圖
+    <span class="en">A map for preparation — not pressure.</span>
+  </h1>
+  <p class="page-lead">
+    這份地圖是我們研究了 <strong>30+ 個國內外創新創業 / EdTech 競賽</strong>後的結論。
+    每一場我們都評估了契合度、獎金、難度、時程衝突與評審偏好。
+    但它不是一張 deadline 壓力表，而是一份<strong>共創籌備地圖</strong>：
+    第一批成員會先一起整理資料、建立素材、拆解案例，再決定哪些賽道值得正式下場。
+  </p>
+
+  <div class="summary-bar">
+    <div class="sum-item">
+      <div class="sum-num">30+</div>
+      <div class="sum-label">評估過的競賽</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-num">4</div>
+      <div class="sum-label">後期旗艦目標</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-num">3</div>
+      <div class="sum-label">戰線（國內 / 亞太 / EdTech）</div>
+    </div>
+    <div class="sum-item">
+      <div class="sum-num">3</div>
+      <div class="sum-label">階段：觀察 / 試跑 / 旗艦</div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 ARM STRATEGY -->
+<section class="strategy">
+  <div class="section-tag">01 — 三條戰線</div>
+  <h2 class="section-title">
+    為什麼先分三條戰線。
+    <span class="en">Three tracks, staged by pressure.</span>
+  </h2>
+  <p class="section-lead">
+    把所有資源 all in 在一場競賽是賭博，對第一批學生也太有壓力。
+    TBD 採取「<strong>國內打基底 / 亞太建曝光 / EdTech 樹品牌</strong>」三線並進，
+    但會依階段切分：前期先研究與整理，中期小型試跑，後期才投入旗艦競賽。
+  </p>
+
+  <div class="strat-grid">
+    <div class="strat-card">
+      <span class="strat-tag">A — 國內政策獎金線</span>
+      <h3 class="strat-title">
+        打基底
+        <span class="en">Domestic Policy & Funding</span>
+      </h3>
+      <p class="strat-resource"><strong>前期研究優先級：高</strong></p>
+      <p style="margin-top:14px;font-size:14px;line-height:1.65;color:var(--ink-soft)">
+        台灣政府競賽 + 國家級新創獎，適合作為後期補助與背書目標；前期先拆規則與素材需求。
+      </p>
+      <ul class="strat-list">
+        <li>U-Start 文創教育類（50–150 萬）</li>
+        <li>戰國策第 21 屆（32 萬）</li>
+        <li>新創事業獎第 25 屆（總統接見）</li>
+        <li>EdTech Award Taiwan</li>
+        <li>智慧創新大賞 Best AI Awards</li>
+      </ul>
+    </div>
+
+    <div class="strat-card">
+      <span class="strat-tag intl">B — 亞太曝光線</span>
+      <h3 class="strat-title">
+        建曝光
+        <span class="en">APAC Exposure</span>
+      </h3>
+      <p class="strat-resource"><strong>前期研究優先級：中</strong></p>
+      <p style="margin-top:14px;font-size:14px;line-height:1.65;color:var(--ink-soft)">
+        以亞太市場切入，先作為觀察與案例研究線；等產品與資料成熟後再評估正式投件。
+      </p>
+      <ul class="strat-list">
+        <li>K-Startup Grand Challenge（國際學生軌）</li>
+        <li>Garage+ SGP（時代基金會）</li>
+        <li>SLINGSHOT 2026 觀察</li>
+        <li>Wistron Accelerator 備案</li>
+      </ul>
+    </div>
+
+    <div class="strat-card">
+      <span class="strat-tag edtech">C — EdTech 國際品牌線</span>
+      <h3 class="strat-title">
+        樹品牌
+        <span class="en">Global EdTech Brand</span>
+      </h3>
+      <p class="strat-resource"><strong>後期旗艦優先級：高</strong></p>
+      <p style="margin-top:14px;font-size:14px;line-height:1.65;color:var(--ink-soft)">
+        以「升學顧問科技化」的雙軌敘事建立國際 EdTech 品牌；前期重點是打磨 pitch deck、案例與 demo。
+      </p>
+      <ul class="strat-list">
+        <li>GSV Cup 2027（ASU+GSV Summit）</li>
+        <li>Hult Prize 2026-27（$1M 首獎）</li>
+        <li>QS Reimagine Education（Wharton）</li>
+        <li>GSEA（EO 全球賽）</li>
+        <li>Tools Competition Postsecondary 賽道</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline">
+  <div class="section-tag">02 — 12 個月參考時程</div>
+  <h2 class="section-title">
+    從現在到 2027 年 6 月，<br>
+    哪些節點值得追蹤。
+    <span class="en">Reference deadlines, not mandatory battles.</span>
+  </h2>
+  <p class="section-lead">
+    這是對外公開版本。它用來幫大家理解大方向，
+    不代表每個截止日都要下場。內部會再標註「觀察型 / 練兵型 / 旗艦型」、準備啟動點與時程衝突警示。
+  </p>
+
+  <div class="timeline-events">
+    <div class="tl-evt">
+      <span class="tl-date">2026.05.10 起</span>
+      <span class="tl-name">WISE Prize 2026-27 <span class="stage">· Open Call 開始</span></span>
+      <span class="tl-tag intl">國際</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.06.01</span>
+      <span class="tl-name">新創事業獎第 25 屆 <span class="stage">· 報名截止（後端公司）</span></span>
+      <span class="tl-tag">國內</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.06.15</span>
+      <span class="tl-name">TIE 2026 發明競賽區 <span class="stage">· 報名截止</span></span>
+      <span class="tl-tag">國內</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.06.17</span>
+      <span class="tl-name">戰國策第 21 屆 <span class="stage">· 決賽暨頒獎</span></span>
+      <span class="tl-tag flagship">旗艦 / 國內</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.06.30</span>
+      <span class="tl-name">SLINGSHOT 2026 <span class="stage">· Global Call 截止</span></span>
+      <span class="tl-tag intl">亞太</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.07.13–08.14</span>
+      <span class="tl-name">K-Startup Grand Challenge <span class="stage">· 國際學生軌申請期</span></span>
+      <span class="tl-tag intl">亞太</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.07.31</span>
+      <span class="tl-name">QS Reimagine Education 2026 <span class="stage">· 投件截止</span></span>
+      <span class="tl-tag flagship">旗艦 / EdTech</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.09.17–19</span>
+      <span class="tl-name">TIE 2026 台灣創新技術博覽會 <span class="stage">· 展覽</span></span>
+      <span class="tl-tag">國內</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.09–11</span>
+      <span class="tl-name">Hult Prize 2026-27 賽季啟動 <span class="stage">· 各校 On-Campus 競賽</span></span>
+      <span class="tl-tag flagship">旗艦 / 國際</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.10.15 前後</span>
+      <span class="tl-name">Tools Competition 2027 <span class="stage">· 摘要截止</span></span>
+      <span class="tl-tag edtech">EdTech</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2026.10.27–29</span>
+      <span class="tl-name">SLINGSHOT 2026 Finals <span class="stage">· @ Singapore</span></span>
+      <span class="tl-tag intl">亞太</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2027.02 底</span>
+      <span class="tl-name">U-Start 116 年度 <span class="stage">· 報名截止</span></span>
+      <span class="tl-tag flagship">旗艦 / 國內</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2027.03</span>
+      <span class="tl-name">Hult Prize Regional Finals / Nationals <span class="stage">· 各區決賽</span></span>
+      <span class="tl-tag flagship">旗艦 / 國際</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2027.04.12–15</span>
+      <span class="tl-name">ASU+GSV Summit / GSV Cup Demo Day <span class="stage">· 全球決賽</span></span>
+      <span class="tl-tag flagship">旗艦 / EdTech</span>
+    </div>
+    <div class="tl-evt">
+      <span class="tl-date">2027.06</span>
+      <span class="tl-name">GSEA Global Finals <span class="stage">· @ Cape Town</span></span>
+      <span class="tl-tag intl">國際</span>
+    </div>
+  </div>
+</section>
+
+<!-- TOP 10 TABLE -->
+<section class="top10">
+  <div class="section-tag">03 — Top 10 優先級</div>
+  <h2 class="section-title">
+    哪一場先研究、哪一場後期再打。
+    <span class="en">Top 10 by staged priority.</span>
+  </h2>
+  <p class="section-lead">
+    排序依據：契合度 × 獎金 / 價值 × 入選機率 × 對 TBD 整體故事的加分。
+    這裡的「優先」不等於立刻開打，而是代表它值得被優先研究、拆解與準備素材。
+  </p>
+
+  <div class="top10-table">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>競賽</th>
+          <th>契合度</th>
+          <th>獎金 / 價值</th>
+          <th>難度</th>
+          <th>階段定位</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="rank">01</td>
+          <td class="name">U-Start 創新創業計畫<span class="en">U-Start · 文創教育類</span></td>
+          <td><span class="fit-pill fit-extreme">極高</span></td>
+          <td>50–150 萬 NTD + 政府背書</td>
+          <td>中</td>
+          <td class="must">後期主打</td>
+        </tr>
+        <tr>
+          <td class="rank">02</td>
+          <td class="name">GSV Cup<span class="en">ASU+GSV Summit · EdTech 旗艦</span></td>
+          <td><span class="fit-pill fit-extreme">極高</span></td>
+          <td>全球曝光 · 3000 提名選 50</td>
+          <td>高</td>
+          <td class="must">後期主打</td>
+        </tr>
+        <tr>
+          <td class="rank">03</td>
+          <td class="name">Hult Prize 2026-27<span class="en">Hult IBS + Clinton GI</span></td>
+          <td><span class="fit-pill fit-high">高</span></td>
+          <td>全球冠軍 $1M USD</td>
+          <td>高</td>
+          <td class="must">後期主打</td>
+        </tr>
+        <tr>
+          <td class="rank">04</td>
+          <td class="name">戰國策第 21 屆<span class="en">中華創業育成協會 + 新北青年局</span></td>
+          <td><span class="fit-pill fit-high">高</span></td>
+          <td>32 萬 NTD + 銜接 U-Start</td>
+          <td>中</td>
+          <td class="must">後期主打</td>
+        </tr>
+        <tr>
+          <td class="rank">05</td>
+          <td class="name">QS Reimagine Education<span class="en">QS × Wharton</span></td>
+          <td><span class="fit-pill fit-high">高</span></td>
+          <td>$25K USD + 國際 EdTech 品牌</td>
+          <td>中</td>
+          <td class="must">優先研究</td>
+        </tr>
+        <tr>
+          <td class="rank">06</td>
+          <td class="name">GSEA<span class="en">EO Global Student Entrepreneur Awards</span></td>
+          <td><span class="fit-pill fit-high">高</span></td>
+          <td>$100K+ 獎金池 + docuseries</td>
+          <td>中</td>
+          <td class="must">優先研究</td>
+        </tr>
+        <tr>
+          <td class="rank">07</td>
+          <td class="name">新創事業獎第 25 屆<span class="en">經濟部 · 創新服務組</span></td>
+          <td><span class="fit-pill fit-mid">中高</span></td>
+          <td>政府認證 + 總統接見</td>
+          <td>中</td>
+          <td>公司線觀察</td>
+        </tr>
+        <tr>
+          <td class="rank">08</td>
+          <td class="name">EdTech Award Taiwan<span class="en">台北市電腦商業同業公會</span></td>
+          <td><span class="fit-pill fit-high">高</span></td>
+          <td>台灣 EdTech 指標獎</td>
+          <td>低</td>
+          <td>入門後期主打</td>
+        </tr>
+        <tr>
+          <td class="rank">09</td>
+          <td class="name">Tools Competition<span class="en">Postsecondary Success 賽道</span></td>
+          <td><span class="fit-pill fit-mid">中</span></td>
+          <td>$50K–500K USD</td>
+          <td>中高</td>
+          <td>進階選打</td>
+        </tr>
+        <tr>
+          <td class="rank">10</td>
+          <td class="name">K-Startup Grand Challenge<span class="en">韓國 MSS · 國際學生軌</span></td>
+          <td><span class="fit-pill fit-mid">中</span></td>
+          <td>KRW 50–80M + 韓國市場</td>
+          <td>中</td>
+          <td>國際觀察</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FLAGSHIP DETAILS -->
+<section class="details-section">
+  <div class="section-tag">04 — 後期旗艦深度卡</div>
+  <h2 class="section-title">
+    為什麼先保留這四場。
+    <span class="en">The four flagships, staged.</span>
+  </h2>
+  <p class="section-lead">
+    這四場不是要第一批成員立刻扛下，而是後期最值得投入的旗艦賽道。
+    前期我們先拆規則、整理案例、建立 pitch deck 與 demo 素材；確認團隊承載力後再正式下場。
+  </p>
+
+  <div class="detail-grid">
+    <!-- U-Start -->
+    <div class="detail">
+      <div class="detail-top">
+        <div class="detail-rank">01</div>
+        <div class="detail-tag-group">
+          <span class="fit-pill fit-extreme">契合度 極高</span>
+          <span class="fit-pill fit-mid" style="background:var(--ink);color:#fff">國內 旗艦</span>
+        </div>
+      </div>
+      <h3 class="detail-name">
+        U-Start 創新創業計畫
+        <span class="en">教育部青年發展署 · 文創教育類</span>
+      </h3>
+      <div class="detail-meta">
+        <div><div class="dm-label">補助</div><div class="dm-value">50–150 萬</div></div>
+        <div><div class="dm-label">截止</div><div class="dm-value">2027.02</div></div>
+        <div><div class="dm-label">資格</div><div class="dm-value">2/3 大專生</div></div>
+      </div>
+      <p class="detail-body">
+        文創教育類正是 TBD 雙軌敘事的天然棲位——「升學顧問實體 + AI 個人化學習」
+        完全對應教育部期待的「教育新課綱 + 升學壓力解方」。
+        歷史得獎案例「時間管理規劃本」就是 TBD 該複製的範本。<br><br>
+        <strong>關鍵準備：</strong>找一所創辦學生關聯的學校之育成中心合作（每校 15 案上限）；
+        把後端關聯公司「分離」處理，避免「申請時已設立公司」資格被卡。
+      </p>
+      <div class="detail-foot">
+        <strong>歷史成績：</strong>累計扶植 1,413 組團隊、促成 995 家新創成立。
+      </div>
+    </div>
+
+    <!-- GSV Cup -->
+    <div class="detail">
+      <div class="detail-top">
+        <div class="detail-rank">02</div>
+        <div class="detail-tag-group">
+          <span class="fit-pill fit-extreme">契合度 極高</span>
+          <span class="fit-pill fit-mid" style="background:var(--yellow);color:var(--ink)">EdTech 旗艦</span>
+        </div>
+      </div>
+      <h3 class="detail-name">
+        GSV Cup 50
+        <span class="en">ASU+GSV Summit · 全球 EdTech 早期新創</span>
+      </h3>
+      <div class="detail-meta">
+        <div><div class="dm-label">入選比</div><div class="dm-value">50/3,000+</div></div>
+        <div><div class="dm-label">Demo Day</div><div class="dm-value">2027.04.14</div></div>
+        <div><div class="dm-label">場地</div><div class="dm-value">San Diego</div></div>
+      </div>
+      <p class="detail-body">
+        全球 EdTech 早期新創最高殿堂。2026 cohort 已募資 $177M，部分團隊 ARR 達 $10M。
+        評審共識（Alex Sarlin / Mike Lombardi）正好對應 TBD 的
+        「AI 增強顧問」而非「AI 取代顧問」敘事。<br><br>
+        <strong>關鍵準備：</strong>英文 pitch deck、可量化的 learning outcomes 數據
+        （teacher feedback time、improve learning outcomes）、用「AI Enhances Counselor」訊息切入。
+      </p>
+      <div class="detail-foot">
+        <strong>差異化亮點：</strong>台灣團隊歷年 GSV Cup 入選稀少（亞洲多以印度、新加坡、澳洲為主）。
+      </div>
+    </div>
+
+    <!-- Hult Prize -->
+    <div class="detail">
+      <div class="detail-top">
+        <div class="detail-rank">03</div>
+        <div class="detail-tag-group">
+          <span class="fit-pill fit-high">契合度 高</span>
+          <span class="fit-pill fit-mid" style="background:var(--accent);color:#fff">國際 旗艦</span>
+        </div>
+      </div>
+      <h3 class="detail-name">
+        Hult Prize 2026-27
+        <span class="en">Hult IBS + Clinton Global Initiative</span>
+      </h3>
+      <div class="detail-meta">
+        <div><div class="dm-label">首獎</div><div class="dm-value">$1M USD</div></div>
+        <div><div class="dm-label">流程</div><div class="dm-value">5 階段</div></div>
+        <div><div class="dm-label">啟動</div><div class="dm-value">2026.09</div></div>
+      </div>
+      <p class="detail-body">
+        全球冠軍 100 萬美元種子投資。2015 政大 IMPCT 已開出台灣團隊路徑——
+        「PlayCare：在都市貧民窟建立兒童教育微型加盟」正是
+        「教育 + 商業 + 社會影響力」三位一體的範本。<br><br>
+        <strong>關鍵準備：</strong>把升學顧問重新定位為
+        「Education Equity for Underserved Asian Students」；
+        強調可擴展到東南亞低收入家庭；準備 4 分鐘 SDG 對接故事。
+      </p>
+      <div class="detail-foot">
+        <strong>規模：</strong>2024 年參與規模達 20 萬學生、4 萬隊伍、2 千所大學、113 國。
+      </div>
+    </div>
+
+    <!-- QS Reimagine -->
+    <div class="detail">
+      <div class="detail-top">
+        <div class="detail-rank">04</div>
+        <div class="detail-tag-group">
+          <span class="fit-pill fit-high">契合度 高</span>
+          <span class="fit-pill fit-mid" style="background:var(--yellow);color:var(--ink)">EdTech 旗艦</span>
+        </div>
+      </div>
+      <h3 class="detail-name">
+        QS Reimagine Education
+        <span class="en">QS × Wharton</span>
+      </h3>
+      <div class="detail-meta">
+        <div><div class="dm-label">獎金</div><div class="dm-value">$25K USD</div></div>
+        <div><div class="dm-label">類別</div><div class="dm-value">15 大類</div></div>
+        <div><div class="dm-label">截止</div><div class="dm-value">2026.07.31</div></div>
+      </div>
+      <p class="detail-body">
+        QS + Wharton 合辦的 EdTech 國際品牌獎。15 大類別含「AI in Education」、
+        「Skills for Employability」、「Pedagogical Innovation」，
+        TBD 可挑契合度最高的類別入手；獲 Bronze/Silver 即有國際背書。<br><br>
+        <strong>關鍵準備：</strong>英文 evidence-based 提案、附 measurable outcomes
+        （學生升學錄取率、考試成績改進、家長滿意度等可量化指標）。
+      </p>
+      <div class="detail-foot">
+        <strong>規模：</strong>2024 年共 1,300+ 件提案、18 個獎項類別、1,300+ 國際評審 + 50 位 Grand Jury 專家。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVOID -->
+<section class="avoid">
+  <div class="avoid-inner">
+    <div class="section-tag">05 — 我們不打的競賽</div>
+    <h2 class="section-title">
+      明知地雷，繞著走。
+      <span class="en">What we deliberately skip.</span>
+    </h2>
+    <p class="section-lead">
+      篩選不打的競賽，跟挑要打的競賽一樣重要。下面這三類我們已經明確排除——
+      不是因為這些競賽不好，而是它們跟 TBD 的條件不對盤、CP 值低、甚至有反效果。
+    </p>
+
+    <div class="avoid-grid">
+      <div class="avoid-card">
+        <span class="avoid-card-tag">資格不符</span>
+        <h4 class="avoid-card-name">
+          FITI 創新創業激勵計畫
+          <span class="en">國科會 · 國研院 STPI</span>
+        </h4>
+        <p class="avoid-card-body">
+          硬門檻：創意主題限定「創新科技」或「健康醫療」，
+          且 50% 以上成員須為學研機構。純教育服務切入不易進前 20，
+          除非以「AI 教育演算法」純技術角度切入並淡化升學顧問商業模式，否則風險高。
+        </p>
+      </div>
+
+      <div class="avoid-card">
+        <span class="avoid-card-tag">政治敏感</span>
+        <h4 class="avoid-card-name">
+          互聯網+大學生創新創業大賽
+          <span class="en">中國全國性大賽</span>
+        </h4>
+        <p class="avoid-card-body">
+          規模雖大，但對台灣團隊有身分證件門檻、政治敏感性高。
+          獲獎對台灣品牌價值反而可能成為負擔，CP 值低。
+          我們明確跳過。
+        </p>
+      </div>
+
+      <div class="avoid-card">
+        <span class="avoid-card-tag">主題不對</span>
+        <h4 class="avoid-card-name">
+          AppWorks AW#32
+          <span class="en">之初加速器 · 2026 主題已轉向</span>
+        </h4>
+        <p class="avoid-card-body">
+          AW#32 已聚焦製造 AI、國防科技、鏈上金融，EdTech 主題已淡出。
+          AW#29 曾設 EdTech 主題但 3 個示範團隊皆非台灣團隊。
+          備案：Wistron Accelerator #10 仍含教育與醫療科技。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <h2 class="final-cta-title">
+    這份地圖是共創起點。
+    <span class="en">Start with the map, not the pressure.</span>
+  </h2>
+  <p class="final-cta-sub">
+    完整的討論版會把每場競賽標成「觀察型 / 練兵型 / 旗艦型」，
+    並補上準備啟動點、素材需求、時程衝突與歷史得獎拆解。
+    加入觀察名單後，你可以先閱讀與討論，不代表你要立刻承擔投件。
+  </p>
+  <div class="final-cta-btns">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScfdTZaaTeXPj12r5p8cHxm_WJCHyrR_CUw9lmL5AUd4CcR_A/viewform" target="_blank" rel="noopener" class="btn-primary">
+      加入觀察名單 →
+    </a>
+    <a href="index.html" class="btn-secondary">
+      ← 回主頁了解計畫全貌
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand">TBD.</div>
+      <div class="foot-meta" style="margin-top:6px">Competition Lab · Competition Map · Public Orientation</div>
+    </div>
+    <div class="foot-meta">
+      Map version 2026.05 · Updated quarterly<br>
+      © 2026 TBD Studio.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

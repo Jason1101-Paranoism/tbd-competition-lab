@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TBD Studio｜Competition Lab 共創籌備計畫 — Define, Design, Deliver</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0E1A33;
+  --ink-soft:#142143;
+  --mid:#5A6080;
+  --line:#D8D6E3;
+  --bg:#F5F3EC;       /* warm paper */
+  --bg-card:#FFFFFF;
+  --accent:#1A5D94;
+  --accent-deep:#0F3F66;
+  --yellow:#FAB748;
+  --yellow-deep:#E69A1E;
+  --red:#C24A3F;
+  --green:#3F7A5A;
+  --serif-en:'Fraunces',serif;
+  --serif-tc:'Noto Serif TC',serif;
+  --sans:'Manrope','Noto Sans TC',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ============ GRID PAPER BG ============ */
+.paper-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(20,33,67,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(20,33,67,.035) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+
+/* ============ NAV ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(245,243,236,.85);
+  backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1320px;margin:0 auto;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:baseline;gap:10px}
+.brand-mark{
+  font-family:var(--serif-en);font-weight:900;font-size:22px;
+  color:var(--ink);letter-spacing:-.02em;
+}
+.brand-sub{
+  font-family:var(--mono);font-size:11px;
+  color:var(--mid);text-transform:uppercase;letter-spacing:.12em;
+}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{
+  font-size:13px;color:var(--mid);
+  transition:color .2s;font-weight:500;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  background:var(--ink);color:#fff !important;
+  padding:9px 18px;border-radius:2px;
+  font-size:13px;font-weight:600;
+  display:inline-flex;align-items:center;gap:6px;
+}
+.nav-cta:hover{background:var(--accent) !important;color:#fff !important}
+@media (max-width:860px){
+  .nav-links a:not(.nav-cta){display:none}
+  .nav-inner{padding:12px 18px}
+}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;z-index:1;
+  padding:140px 28px 80px;max-width:1320px;margin:0 auto;
+}
+.hero-meta{
+  display:flex;align-items:center;gap:14px;margin-bottom:36px;
+  font-family:var(--mono);font-size:11px;
+  color:var(--mid);text-transform:uppercase;letter-spacing:.18em;
+}
+.hero-meta .dot{width:6px;height:6px;background:var(--yellow);border-radius:50%}
+.hero-meta .pulse{
+  width:8px;height:8px;background:var(--red);border-radius:50%;
+  animation:pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.35;transform:scale(1.4)}
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:end;
+}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero{padding:120px 22px 60px}
+}
+.hero-title{
+  font-family:var(--serif-tc);font-weight:900;
+  font-size:clamp(38px,6vw,82px);
+  line-height:1.02;letter-spacing:-.02em;
+  color:var(--ink);
+}
+.hero-title .en{
+  font-family:var(--serif-en);font-style:italic;
+  font-weight:600;color:var(--accent);
+  display:block;font-size:.82em;margin-top:6px;
+  letter-spacing:-.01em;
+}
+.hero-title .strike{
+  position:relative;display:inline-block;
+  color:var(--mid);
+}
+.hero-title .strike::after{
+  content:"";position:absolute;left:-4px;right:-4px;top:52%;
+  height:3px;background:var(--red);
+  transform:rotate(-3deg);
+}
+.hero-sub{
+  margin-top:32px;max-width:600px;
+  font-size:18px;line-height:1.7;color:var(--ink-soft);
+  font-weight:400;
+}
+.hero-sub strong{color:var(--ink);font-weight:700}
+
+.hero-side{
+  border-left:1px solid var(--line);padding-left:36px;
+}
+@media (max-width:980px){
+  .hero-side{border-left:none;border-top:1px solid var(--line);padding:30px 0 0}
+}
+.hero-stamp{
+  font-family:var(--mono);font-size:10px;
+  color:var(--mid);text-transform:uppercase;letter-spacing:.15em;
+  margin-bottom:18px;
+}
+.countdown-card{
+  background:var(--ink);color:#fff;
+  padding:28px;position:relative;overflow:hidden;
+}
+.countdown-card::before{
+  content:"";position:absolute;top:-30px;right:-30px;
+  width:120px;height:120px;border-radius:50%;
+  background:var(--yellow);opacity:.16;
+}
+.countdown-label{
+  font-family:var(--mono);font-size:10px;
+  color:var(--yellow);text-transform:uppercase;letter-spacing:.2em;
+  margin-bottom:8px;
+}
+.countdown-comp{
+  font-family:var(--serif-en);font-weight:700;font-size:22px;
+  margin-bottom:16px;letter-spacing:-.01em;
+}
+.countdown-time{
+  display:flex;align-items:baseline;gap:8px;margin-bottom:12px;
+}
+.countdown-num{
+  font-family:var(--mono);font-weight:700;font-size:54px;
+  color:var(--yellow);line-height:1;
+}
+.countdown-unit{
+  font-family:var(--mono);font-size:13px;color:#fff;opacity:.7;
+  text-transform:uppercase;letter-spacing:.15em;
+}
+.countdown-next{
+  font-size:11px;color:#fff;opacity:.55;
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.1em;
+  padding-top:14px;border-top:1px solid rgba(255,255,255,.12);
+}
+
+.hero-ctas{
+  margin-top:48px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;
+}
+.btn-primary{
+  background:var(--ink);color:#fff;
+  padding:16px 32px;font-size:15px;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--ink);transition:all .25s;
+  letter-spacing:.02em;
+}
+.btn-primary:hover{
+  background:var(--yellow);color:var(--ink);border-color:var(--yellow);
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 var(--ink);
+}
+.btn-secondary{
+  background:transparent;color:var(--ink);
+  padding:16px 32px;font-size:15px;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--ink);transition:all .25s;
+  letter-spacing:.02em;
+}
+.btn-secondary:hover{
+  background:var(--ink);color:#fff;
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 var(--accent);
+}
+.btn-meta{
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+
+/* ============ TIMELINE TICKER ============ */
+.ticker{
+  position:relative;z-index:2;
+  background:var(--ink);color:#fff;
+  border-top:1px solid #000;border-bottom:1px solid #000;
+  padding:18px 0;overflow:hidden;
+}
+.ticker-track{
+  display:flex;gap:60px;animation:tickerScroll 60s linear infinite;
+  white-space:nowrap;
+}
+@keyframes tickerScroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:var(--mono);font-size:13px;
+}
+.ticker-item .when{color:var(--yellow);font-weight:600}
+.ticker-item .what{color:#fff}
+.ticker-item .tag{
+  font-size:10px;color:#fff;opacity:.5;
+  padding:2px 8px;border:1px solid rgba(255,255,255,.25);
+}
+
+/* ============ SECTION FRAMING ============ */
+.section{
+  position:relative;z-index:1;
+  padding:110px 28px;max-width:1320px;margin:0 auto;
+}
+@media (max-width:860px){.section{padding:80px 22px}}
+.section-tag{
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  text-transform:uppercase;letter-spacing:.2em;
+  display:flex;align-items:center;gap:10px;margin-bottom:24px;
+}
+.section-tag::before{
+  content:"";width:32px;height:1px;background:var(--ink);
+}
+.section-title{
+  font-family:var(--serif-tc);font-weight:900;
+  font-size:clamp(32px,4.5vw,56px);
+  line-height:1.1;letter-spacing:-.02em;color:var(--ink);
+  max-width:900px;
+}
+.section-title .en{
+  font-family:var(--serif-en);font-style:italic;
+  font-weight:600;font-size:.6em;
+  color:var(--accent);display:block;margin-top:8px;
+  letter-spacing:0;
+}
+.section-lead{
+  margin-top:24px;max-width:740px;
+  font-size:17px;line-height:1.7;color:var(--ink-soft);
+}
+
+/* ============ WHY NOW ============ */
+.why-now{
+  margin-top:64px;
+  display:grid;grid-template-columns:1.3fr 1fr;gap:48px;
+}
+@media (max-width:860px){.why-now{grid-template-columns:1fr;gap:32px}}
+.quote-card{
+  background:var(--bg-card);border:1px solid var(--line);
+  padding:44px 40px;position:relative;
+}
+.quote-card::before{
+  content:"\201C";position:absolute;top:-10px;left:24px;
+  font-family:var(--serif-en);font-size:120px;color:var(--yellow);
+  line-height:1;font-weight:900;
+}
+.quote-text{
+  font-family:var(--serif-tc);font-size:22px;line-height:1.55;
+  color:var(--ink);font-weight:500;
+  position:relative;margin-top:18px;
+}
+.quote-text em{
+  font-family:var(--serif-en);font-style:italic;
+  color:var(--accent);font-weight:600;
+}
+.quote-attr{
+  margin-top:24px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:13px;color:var(--mid);
+  font-family:var(--mono);letter-spacing:.04em;
+}
+.quote-attr strong{color:var(--ink);font-weight:700;font-family:var(--sans)}
+
+.stat-list{display:flex;flex-direction:column;gap:0}
+.stat-row{
+  padding:24px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+}
+.stat-row:first-child{padding-top:0}
+.stat-row:last-child{border-bottom:none}
+.stat-label{font-size:13px;color:var(--mid);max-width:60%;line-height:1.4}
+.stat-value{
+  font-family:var(--mono);font-weight:700;font-size:28px;
+  color:var(--ink);white-space:nowrap;
+}
+.stat-value .unit{font-size:13px;color:var(--mid);margin-left:4px;font-weight:500}
+
+/* ============ DIFFERENTIATORS / 3 ARMS ============ */
+.arms{
+  margin-top:64px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+@media (max-width:860px){.arms{grid-template-columns:1fr}}
+.arm{
+  background:var(--bg-card);border:1px solid var(--line);
+  padding:36px 32px;position:relative;
+  transition:all .3s;
+}
+.arm:hover{
+  transform:translate(-4px,-4px);
+  box-shadow:8px 8px 0 var(--ink);
+  border-color:var(--ink);
+}
+.arm-num{
+  font-family:var(--mono);font-size:11px;
+  color:var(--mid);letter-spacing:.2em;margin-bottom:18px;
+}
+.arm-title{
+  font-family:var(--serif-tc);font-weight:700;font-size:24px;
+  line-height:1.3;color:var(--ink);margin-bottom:16px;
+}
+.arm-title .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:14px;color:var(--accent);display:block;margin-bottom:6px;
+  letter-spacing:0;
+}
+.arm-desc{font-size:14px;line-height:1.65;color:var(--ink-soft)}
+.arm-evidence{
+  margin-top:20px;padding-top:18px;border-top:1px dashed var(--line);
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  line-height:1.6;letter-spacing:.02em;
+}
+.arm-evidence strong{color:var(--accent);font-family:var(--sans);font-weight:700}
+
+/* ============ FLAGSHIP COMPETITIONS ============ */
+.flagships{margin-top:60px}
+.flagships-head{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:32px;gap:24px;flex-wrap:wrap;
+}
+.flagships-head h3{
+  font-family:var(--serif-tc);font-weight:700;font-size:22px;
+  color:var(--ink);
+}
+.flagships-head a{
+  font-family:var(--mono);font-size:12px;color:var(--accent);
+  font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:6px;
+  border-bottom:1px solid var(--accent);padding-bottom:2px;
+}
+.flagships-head a:hover{color:var(--ink);border-color:var(--ink)}
+
+.flagship-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border:1px solid var(--line);
+}
+@media (max-width:980px){.flagship-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.flagship-grid{grid-template-columns:1fr}}
+.flag{
+  padding:28px;border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  background:var(--bg-card);
+  position:relative;transition:background .25s;
+}
+.flag:hover{background:#FAF8F1}
+.flag:last-child{border-right:none}
+@media (max-width:980px){
+  .flag:nth-child(2n){border-right:none}
+  .flag:nth-child(odd){border-right:1px solid var(--line)}
+}
+@media (max-width:560px){
+  .flag{border-right:none !important}
+}
+.flag-rank{
+  position:absolute;top:14px;right:18px;
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  letter-spacing:.1em;
+}
+.flag-region{
+  display:inline-block;padding:3px 10px;
+  background:var(--ink);color:#fff;
+  font-family:var(--mono);font-size:9px;letter-spacing:.15em;
+  text-transform:uppercase;margin-bottom:14px;
+}
+.flag-region.intl{background:var(--accent)}
+.flag-region.edtech{background:var(--yellow);color:var(--ink)}
+.flag-name{
+  font-family:var(--serif-tc);font-weight:700;font-size:20px;
+  line-height:1.3;color:var(--ink);margin-bottom:6px;
+}
+.flag-name .en{
+  font-family:var(--serif-en);font-weight:600;font-size:14px;
+  color:var(--mid);display:block;letter-spacing:0;font-style:italic;
+}
+.flag-body{
+  margin-top:14px;font-size:13px;line-height:1.6;color:var(--ink-soft);
+}
+.flag-stats{
+  margin-top:18px;padding-top:14px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:12px;
+}
+.flag-stat{flex:1}
+.flag-stat-label{
+  font-family:var(--mono);font-size:9px;color:var(--mid);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;
+}
+.flag-stat-value{
+  font-family:var(--mono);font-weight:700;font-size:14px;color:var(--ink);
+}
+
+/* ============ 12 MONTH PATH ============ */
+.path-section{background:var(--ink);position:relative;overflow:hidden}
+.path-section::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.path-inner{
+  position:relative;z-index:1;
+  padding:110px 28px;max-width:1320px;margin:0 auto;color:#fff;
+}
+@media (max-width:860px){.path-inner{padding:80px 22px}}
+.path-inner .section-tag{color:#fff;opacity:.7}
+.path-inner .section-tag::before{background:var(--yellow)}
+.path-inner .section-title{color:#fff}
+.path-inner .section-title .en{color:var(--yellow)}
+.path-inner .section-lead{color:rgba(255,255,255,.7)}
+
+.path-track{
+  margin-top:80px;position:relative;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+}
+@media (max-width:860px){
+  .path-track{grid-template-columns:1fr;gap:32px}
+}
+.path-step{
+  padding:0 24px;position:relative;
+}
+.path-step:not(:last-child)::after{
+  content:"→";position:absolute;right:-8px;top:32px;
+  font-family:var(--mono);font-size:28px;color:var(--yellow);
+  font-weight:400;
+}
+@media (max-width:860px){.path-step:not(:last-child)::after{display:none}}
+.path-step-month{
+  font-family:var(--mono);font-size:11px;color:var(--yellow);
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;
+}
+.path-step-role{
+  font-family:var(--serif-tc);font-weight:700;font-size:30px;
+  color:#fff;margin-bottom:6px;line-height:1.2;
+}
+.path-step-role .en{
+  font-family:var(--serif-en);font-weight:600;font-style:italic;
+  font-size:16px;color:var(--yellow);display:block;margin-top:4px;
+  letter-spacing:0;
+}
+.path-step-time{
+  margin-top:18px;font-family:var(--mono);font-size:13px;
+  color:rgba(255,255,255,.55);
+}
+.path-step-desc{
+  margin-top:18px;font-size:14px;line-height:1.65;
+  color:rgba(255,255,255,.78);
+}
+.path-step-list{
+  margin-top:18px;list-style:none;
+}
+.path-step-list li{
+  padding:8px 0;border-bottom:1px solid rgba(255,255,255,.08);
+  font-size:13px;color:rgba(255,255,255,.85);
+  display:flex;align-items:flex-start;gap:8px;
+}
+.path-step-list li:last-child{border-bottom:none}
+.path-step-list li::before{
+  content:"▸";color:var(--yellow);font-family:var(--mono);
+  flex-shrink:0;
+}
+
+/* ============ TAKEAWAY ============ */
+.takeaway-grid{
+  margin-top:64px;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+  border:1px solid var(--line);
+}
+@media (max-width:860px){.takeaway-grid{grid-template-columns:1fr}}
+.takeaway{
+  padding:32px;border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);background:var(--bg-card);
+}
+.takeaway:nth-child(2n){border-right:none}
+.takeaway:nth-last-child(-n+2){border-bottom:none}
+@media (max-width:860px){
+  .takeaway{border-right:none}
+  .takeaway:nth-last-child(-n+2){border-bottom:1px solid var(--line)}
+  .takeaway:last-child{border-bottom:none}
+}
+.takeaway-icon{
+  width:44px;height:44px;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;border:1px solid var(--line);
+}
+.takeaway-icon svg{width:22px;height:22px}
+.takeaway-title{
+  font-family:var(--serif-tc);font-weight:700;font-size:19px;
+  color:var(--ink);margin-bottom:8px;
+}
+.takeaway-desc{font-size:14px;line-height:1.65;color:var(--ink-soft)}
+
+/* ============ ROLES ============ */
+.roles{
+  margin-top:64px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+@media (max-width:860px){.roles{grid-template-columns:1fr}}
+.role{
+  border:1px solid var(--line);background:var(--bg-card);
+  padding:36px 32px;position:relative;
+}
+.role.featured{
+  background:var(--ink);color:#fff;border-color:var(--ink);
+}
+.role.featured .role-tag{color:var(--yellow)}
+.role.featured .role-name{color:#fff}
+.role.featured .role-meta{border-color:rgba(255,255,255,.15)}
+.role.featured .role-meta-label{color:rgba(255,255,255,.5)}
+.role.featured .role-meta-value{color:#fff}
+.role.featured .role-list li{color:rgba(255,255,255,.85);border-color:rgba(255,255,255,.1)}
+.role.featured .role-list li::before{color:var(--yellow)}
+
+.role-tag{
+  font-family:var(--mono);font-size:10px;color:var(--mid);
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px;
+}
+.role-name{
+  font-family:var(--serif-tc);font-weight:700;font-size:26px;
+  color:var(--ink);margin-bottom:6px;
+}
+.role-name .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:15px;color:var(--accent);display:block;letter-spacing:0;
+}
+.role.featured .role-name .en{color:var(--yellow)}
+.role-meta{
+  margin-top:18px;padding-top:18px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:16px;
+}
+.role-meta-item{flex:1}
+.role-meta-label{
+  font-family:var(--mono);font-size:10px;color:var(--mid);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;
+}
+.role-meta-value{font-size:14px;font-weight:600;color:var(--ink);font-family:var(--mono)}
+.role-list{
+  margin-top:22px;list-style:none;
+}
+.role-list li{
+  padding:10px 0;font-size:13px;color:var(--ink-soft);
+  border-bottom:1px dotted var(--line);
+  display:flex;align-items:flex-start;gap:10px;line-height:1.5;
+}
+.role-list li:last-child{border-bottom:none}
+.role-list li::before{
+  content:"✓";color:var(--accent);font-weight:700;flex-shrink:0;
+}
+
+/* ============ APPLY FLOW ============ */
+.flow{
+  margin-top:60px;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+}
+@media (max-width:980px){.flow{grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line)}}
+@media (max-width:560px){.flow{grid-template-columns:1fr}}
+.flow-step{
+  padding:28px 20px;background:var(--bg-card);
+  border:1px solid var(--line);border-right:none;
+  position:relative;
+}
+.flow-step:last-child{border-right:1px solid var(--line)}
+@media (max-width:980px){
+  .flow-step{border:none}
+}
+.flow-step::after{
+  content:"";position:absolute;right:-12px;top:50%;
+  transform:translateY(-50%);
+  width:24px;height:24px;background:var(--yellow);
+  clip-path:polygon(0 0,100% 50%,0 100%);
+  z-index:2;
+}
+.flow-step:last-child::after{display:none}
+@media (max-width:980px){.flow-step::after{display:none}}
+.flow-num{
+  font-family:var(--mono);font-weight:700;font-size:36px;
+  color:var(--yellow);line-height:1;margin-bottom:14px;
+}
+.flow-title{
+  font-family:var(--serif-tc);font-weight:700;font-size:16px;
+  color:var(--ink);margin-bottom:6px;line-height:1.3;
+}
+.flow-desc{font-size:12px;line-height:1.5;color:var(--mid)}
+
+/* ============ FAQ ============ */
+.faq-list{margin-top:48px}
+.faq{
+  border-bottom:1px solid var(--line);padding:24px 0;
+  cursor:pointer;transition:padding .25s;
+}
+.faq[open]{padding:24px 0 32px}
+.faq summary{
+  list-style:none;display:flex;justify-content:space-between;align-items:center;
+  gap:24px;font-family:var(--serif-tc);font-weight:700;font-size:19px;
+  color:var(--ink);
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";font-family:var(--mono);font-size:24px;color:var(--accent);
+  font-weight:300;transition:transform .25s;flex-shrink:0;
+}
+.faq[open] summary::after{content:"−"}
+.faq-body{
+  margin-top:18px;font-size:15px;line-height:1.7;color:var(--ink-soft);
+  max-width:820px;
+}
+.faq-body strong{color:var(--ink)}
+
+/* ============ FINAL CTA ============ */
+.final{
+  background:var(--ink);color:#fff;
+  padding:120px 28px;position:relative;overflow:hidden;
+}
+.final::before{
+  content:"";position:absolute;top:-100px;right:-100px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(250,183,72,.25) 0%,transparent 70%);
+}
+.final::after{
+  content:"";position:absolute;bottom:-150px;left:-150px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,93,148,.4) 0%,transparent 70%);
+}
+.final-inner{
+  max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1;
+}
+.final-eyebrow{
+  font-family:var(--mono);font-size:12px;color:var(--yellow);
+  text-transform:uppercase;letter-spacing:.25em;margin-bottom:24px;
+}
+.final-title{
+  font-family:var(--serif-tc);font-weight:900;
+  font-size:clamp(36px,5vw,64px);line-height:1.1;
+  letter-spacing:-.02em;
+}
+.final-title .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:600;
+  font-size:.6em;color:var(--yellow);display:block;margin-top:10px;
+  letter-spacing:0;
+}
+.final-sub{
+  margin-top:24px;font-size:17px;line-height:1.7;
+  color:rgba(255,255,255,.75);
+}
+.final-ctas{
+  margin-top:48px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;
+}
+.btn-yellow{
+  background:var(--yellow);color:var(--ink);
+  padding:18px 38px;font-size:16px;font-weight:700;
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--yellow);transition:all .25s;
+}
+.btn-yellow:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 #fff;
+}
+.btn-outline{
+  background:transparent;color:#fff;
+  padding:18px 38px;font-size:16px;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(255,255,255,.4);transition:all .25s;
+}
+.btn-outline:hover{background:rgba(255,255,255,.08);border-color:#fff}
+
+/* ============ FOOTER ============ */
+footer{
+  background:var(--bg);padding:48px 28px;
+  border-top:1px solid var(--line);
+  position:relative;z-index:1;
+}
+.foot-inner{
+  max-width:1320px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;gap:24px;
+  flex-wrap:wrap;
+}
+.foot-brand{
+  font-family:var(--serif-en);font-weight:900;font-size:20px;
+  color:var(--ink);
+}
+.foot-meta{
+  font-family:var(--mono);font-size:11px;color:var(--mid);
+  letter-spacing:.1em;
+}
+
+/* ============ HERO ENTRANCE ANIM ============ */
+.fade-up{
+  opacity:0;transform:translateY(20px);
+  animation:fadeUp .9s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.delay-1{animation-delay:.08s}
+.delay-2{animation-delay:.18s}
+.delay-3{animation-delay:.32s}
+.delay-4{animation-delay:.48s}
+.delay-5{animation-delay:.64s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ============ DIVIDER ============ */
+.divider{
+  max-width:1320px;margin:0 auto;
+  border-top:1px solid var(--line);
+  position:relative;z-index:1;
+}
+</style>
+</head>
+<body>
+
+<div class="paper-grid"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-mark">TBD.</span>
+      <span class="brand-sub">Competition Lab</span>
+    </div>
+    <div class="nav-links">
+      <a href="#why">為什麼是現在</a>
+      <a href="#flagships">目標賽道</a>
+      <a href="#path">共創路徑</a>
+      <a href="#roles">參與身份</a>
+      <a href="#faq">FAQ</a>
+      <a href="competitions.html" class="nav-cta">完整競賽地圖 →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-meta fade-up">
+    <span class="pulse"></span>
+    <span>Founding Cohort · 低壓共創期 · 招募進行中</span>
+    <span class="dot"></span>
+    <span>Define · Design · Deliver</span>
+  </div>
+
+  <div class="hero-grid">
+    <div>
+      <h1 class="hero-title fade-up delay-1">
+        <span class="en">Build first, compete later.</span>
+        跟我們一起建立<br>
+        TBD Competition Lab。<br>
+        從第一份競賽地圖，到第一場國際 Pitch。
+      </h1>
+      <p class="hero-sub fade-up delay-2">
+        這不是<span class="strike">學生社團</span>，也不是一加入就要你扛國際競賽。<br>
+        這是一個為期 <strong>12 個月</strong> 的 EdTech 共創計畫：
+        前期一起研究競賽、整理教育案例、建立 pitch deck 與產品方向；
+        中期用小型任務試跑；後期再挑戰 <strong>U-Start、Hult Prize、GSV Cup</strong> 等旗艦賽道。
+        第一批成員最重要的任務不是立刻得獎，而是<strong>一起把系統做出來</strong>。
+      </p>
+
+      <div class="hero-ctas fade-up delay-3">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScfdTZaaTeXPj12r5p8cHxm_WJCHyrR_CUw9lmL5AUd4CcR_A/viewform" target="_blank" rel="noopener" class="btn-primary">
+          先加入觀察名單
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="competitions.html" class="btn-secondary">
+          先看完整競賽地圖
+        </a>
+        <span class="btn-meta">低壓加入 · 先觀察也可以</span>
+      </div>
+    </div>
+
+    <aside class="hero-side fade-up delay-4">
+      <div class="hero-stamp">⏱ 最近一個參考節點</div>
+      <div class="countdown-card">
+        <div class="countdown-label">Next Reference Deadline</div>
+        <div class="countdown-comp">QS Reimagine Education 2026</div>
+        <div class="countdown-time">
+          <span class="countdown-num" id="cdNum">71</span>
+          <span class="countdown-unit">Days Left</span>
+        </div>
+        <div class="countdown-next">
+          不是要求你立刻負責投件；這些日期是我們用來倒推素材與節奏的參考節點。
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="when">2026.06.01</span><span class="what">新創事業獎 第 25 屆 報名截止</span><span class="tag">國內</span></span>
+    <span class="ticker-item"><span class="when">2026.06.17</span><span class="what">戰國策第 21 屆 決賽暨頒獎</span><span class="tag">國內</span></span>
+    <span class="ticker-item"><span class="when">2026.06.30</span><span class="what">SLINGSHOT 2026 Global Call 截止</span><span class="tag">亞太</span></span>
+    <span class="ticker-item"><span class="when">2026.07.31</span><span class="what">QS Reimagine Education 投件截止</span><span class="tag">EdTech</span></span>
+    <span class="ticker-item"><span class="when">2026.08.14</span><span class="what">K-Startup Grand Challenge 國際學生軌</span><span class="tag">亞太</span></span>
+    <span class="ticker-item"><span class="when">2026.09–11</span><span class="what">Hult Prize 2026-27 On-Campus 開戰</span><span class="tag">國際</span></span>
+    <span class="ticker-item"><span class="when">2027.02</span><span class="what">U-Start 116 年度 文創教育類</span><span class="tag">國內旗艦</span></span>
+    <span class="ticker-item"><span class="when">2027.04.12</span><span class="what">ASU+GSV Summit / GSV Cup Demo Day</span><span class="tag">EdTech 旗艦</span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span class="when">2026.06.01</span><span class="what">新創事業獎 第 25 屆 報名截止</span><span class="tag">國內</span></span>
+    <span class="ticker-item"><span class="when">2026.06.17</span><span class="what">戰國策第 21 屆 決賽暨頒獎</span><span class="tag">國內</span></span>
+    <span class="ticker-item"><span class="when">2026.06.30</span><span class="what">SLINGSHOT 2026 Global Call 截止</span><span class="tag">亞太</span></span>
+    <span class="ticker-item"><span class="when">2026.07.31</span><span class="what">QS Reimagine Education 投件截止</span><span class="tag">EdTech</span></span>
+    <span class="ticker-item"><span class="when">2026.08.14</span><span class="what">K-Startup Grand Challenge 國際學生軌</span><span class="tag">亞太</span></span>
+    <span class="ticker-item"><span class="when">2026.09–11</span><span class="what">Hult Prize 2026-27 On-Campus 開戰</span><span class="tag">國際</span></span>
+    <span class="ticker-item"><span class="when">2027.02</span><span class="what">U-Start 116 年度 文創教育類</span><span class="tag">國內旗艦</span></span>
+    <span class="ticker-item"><span class="when">2027.04.12</span><span class="what">ASU+GSV Summit / GSV Cup Demo Day</span><span class="tag">EdTech 旗艦</span></span>
+  </div>
+</div>
+
+<!-- WHY NOW -->
+<section id="why" class="section">
+  <div class="section-tag">01 — 為什麼是現在</div>
+  <h2 class="section-title">
+    2026 是 EdTech 評審轉向「AI 增強人類關係」的元年。
+    <span class="en">And TBD's narrative is exactly what they're looking for.</span>
+  </h2>
+  <p class="section-lead">
+    我們不打沒有勝算的牌。下面這兩段話是 2026 年 1 月，
+    ASU+GSV Summit 全球 EdTech Lead 與 AWS EdTech 主管在公開受訪時的原話——
+    他們講的，正好就是 TBD Studio 的雙軌敘事。
+  </p>
+
+  <div class="why-now">
+    <div class="quote-card">
+      <p class="quote-text">
+        學習本質上是社會性的、發生於<em>人與人之間</em>。
+        2026 年 GSV Cup 入選的團隊，許多正是以 <em>AI 作為人類關係的加速器</em> 來促進學習——
+        AI 最成功的地方，是<em>讓老師有更多時間與學生互動</em>，
+        而不是取代他們。
+      </p>
+      <div class="quote-attr">
+        — <strong>Alex Sarlin</strong>, Global EdTech Lead, ASU+GSV Summit<br>
+        — <strong>Mike Lombardi</strong>, EdTech Vertical Leader, AWS
+      </div>
+    </div>
+
+    <div class="stat-list">
+      <div class="stat-row">
+        <span class="stat-label">2026 GSV Cup 從全球提名中選出</span>
+        <span class="stat-value">50<span class="unit">/3,000+</span></span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">2026 cohort 已募資總額</span>
+        <span class="stat-value">$177M<span class="unit"> USD</span></span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">台灣團隊歷年 GSV Cup 入選</span>
+        <span class="stat-value">稀少</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">2015 IMPCT 拿下 Hult Prize 首獎</span>
+        <span class="stat-value">$1M<span class="unit"> USD</span></span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">U-Start 累計扶植團隊</span>
+        <span class="stat-value">1,413<span class="unit"> 組</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 3 ARMS / DIFFERENTIATORS -->
+<section class="section">
+  <div class="section-tag">02 — 我們手上有什麼別人沒有</div>
+  <h2 class="section-title">
+    三件你在學校社團拿不到的東西。
+    <span class="en">Three reasons this is not just another student club.</span>
+  </h2>
+
+  <div class="arms">
+    <div class="arm">
+      <div class="arm-num">·01·</div>
+      <h3 class="arm-title">
+        <span class="en">A real competition map.</span>
+        一份扎實的競賽地圖
+      </h3>
+      <p class="arm-desc">
+        我們研究過 2026–2027 全球 30+ 個適合 EdTech 新創的競賽。
+        從契合度、獎金、難度、時程衝突到評審偏好，
+        每一場都有明確的「打 / 不打」結論。
+        你不會在這裡浪費時間做沒有 ROI 的提案。
+      </p>
+      <div class="arm-evidence">
+        <strong>實證：</strong>U-Start、Hult Prize、GSV Cup、QS Reimagine 四大旗艦的時程已對齊；
+        FITI 與中國互聯網+大賽已被明確排除。
+      </div>
+    </div>
+
+    <div class="arm">
+      <div class="arm-num">·02·</div>
+      <h3 class="arm-title">
+        <span class="en">A narrative that fits.</span>
+        2026 評審要的故事
+      </h3>
+      <p class="arm-desc">
+        TBD Studio 的「升學顧問實體 + AI 教育科技」雙軌身份，
+        正是 2026 年國際 EdTech 評審最偏好的「AI 增強人類關係」敘事。
+        加上學生 + 社會人士的混合團隊結構，
+        我們能同時打 U-Start（2/3 大專生）、戰國策（1/2 大專生）、GSEA（學生身份）——
+        這是手上的<strong>制度套利空間</strong>。
+      </p>
+      <div class="arm-evidence">
+        <strong>對標案例：</strong>2015 政大 IMPCT 以「教育 + 商業 + 社會影響力」三位一體
+        拿下 Hult Prize 100 萬美元首獎。我們複製這條路徑。
+      </div>
+    </div>
+
+    <div class="arm">
+      <div class="arm-num">·03·</div>
+      <h3 class="arm-title">
+        <span class="en">Real revenue, real backing.</span>
+        實體業績作為背書
+      </h3>
+      <p class="arm-desc">
+        TBD Studio 不是只有提案、沒有產品的學生團隊。
+        我們有<strong>已運作的升學顧問業務</strong>、
+        <strong>後端關聯公司</strong>作為實體營運實績、
+        以及可以拿出來給評審看的<strong>市場驗證數據</strong>。
+        這直接打中 GSV Cup 的 Product-Market Fit 評選標準，
+        和新創事業獎要求的 114 年度實際營業額。
+      </p>
+      <div class="arm-evidence">
+        <strong>對你的意義：</strong>你提案時手上有實際 traction 數據，
+        不必硬編一個從未驗證的商業模式。
+      </div>
+    </div>
+  </div>
+
+  <!-- FLAGSHIP PREVIEW -->
+  <div class="flagships">
+    <div class="flagships-head">
+      <h3>目標賽道 · Target Tracks</h3>
+      <a href="competitions.html">查看完整競賽地圖與優先級 →</a>
+    </div>
+    <div class="flagship-grid">
+      <div class="flag">
+        <span class="flag-rank">·01·</span>
+        <span class="flag-region">國內 旗艦</span>
+        <h4 class="flag-name">
+          <span class="en">U-Start · 文創教育類</span>
+          U-Start 創新創業計畫
+        </h4>
+        <p class="flag-body">
+          教育部青年發展署主辦。文創教育類正是 TBD 雙軌敘事的天然棲位。
+        </p>
+        <div class="flag-stats">
+          <div class="flag-stat">
+            <div class="flag-stat-label">補助</div>
+            <div class="flag-stat-value">50–150萬</div>
+          </div>
+          <div class="flag-stat">
+            <div class="flag-stat-label">契合度</div>
+            <div class="flag-stat-value">極高</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flag">
+        <span class="flag-rank">·02·</span>
+        <span class="flag-region edtech">EdTech 旗艦</span>
+        <h4 class="flag-name">
+          <span class="en">GSV Cup · ASU+GSV Summit</span>
+          GSV Cup 50
+        </h4>
+        <p class="flag-body">
+          全球 EdTech 早期新創最高殿堂。3,000+ 提名選 50 隊，
+          評審共識完美對應 TBD 敘事。
+        </p>
+        <div class="flag-stats">
+          <div class="flag-stat">
+            <div class="flag-stat-label">曝光</div>
+            <div class="flag-stat-value">全球</div>
+          </div>
+          <div class="flag-stat">
+            <div class="flag-stat-label">Demo Day</div>
+            <div class="flag-stat-value">2027.04</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flag">
+        <span class="flag-rank">·03·</span>
+        <span class="flag-region intl">國際 旗艦</span>
+        <h4 class="flag-name">
+          <span class="en">Hult Prize · UNLIMITED</span>
+          Hult Prize 2026-27
+        </h4>
+        <p class="flag-body">
+          冠軍 100 萬美元種子投資。2015 政大 IMPCT 已開出台灣路徑。
+          以 SDG 4 包裝升學顧問為「教育公平」敘事。
+        </p>
+        <div class="flag-stats">
+          <div class="flag-stat">
+            <div class="flag-stat-label">首獎</div>
+            <div class="flag-stat-value">$1M USD</div>
+          </div>
+          <div class="flag-stat">
+            <div class="flag-stat-label">參賽</div>
+            <div class="flag-stat-value">113 國</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flag">
+        <span class="flag-rank">·04·</span>
+        <span class="flag-region edtech">EdTech 旗艦</span>
+        <h4 class="flag-name">
+          <span class="en">QS Reimagine Education</span>
+          QS × Wharton
+        </h4>
+        <p class="flag-body">
+          15 大類別含「AI in Education」、「Skills for Employability」，
+          類別多元、獲 Bronze/Silver 即有國際背書。
+        </p>
+        <div class="flag-stats">
+          <div class="flag-stat">
+            <div class="flag-stat-label">獎金</div>
+            <div class="flag-stat-value">$25K USD</div>
+          </div>
+          <div class="flag-stat">
+            <div class="flag-stat-label">截止</div>
+            <div class="flag-stat-value">2026.07.31</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 MONTH PATH -->
+<section id="path" class="path-section">
+  <div class="path-inner">
+    <div class="section-tag">03 — 低壓共創路徑</div>
+    <h2 class="section-title">
+      先一起把系統做出來，<br>
+      再決定要不要正式下場。
+      <span class="en">A low-pressure path from observer to builder.</span>
+    </h2>
+    <p class="section-lead">
+      第一階段不要求你立刻交付、不要求你馬上比賽。
+      我們先用 6–8 週完成競賽研究、案例整理、pitch deck 草稿與角色磨合；
+      確認彼此適合後，再進入小型試跑與旗艦競賽準備。
+    </p>
+
+    <div class="path-track">
+      <div class="path-step">
+        <div class="path-step-month">Phase 0 · 前 6–8 週</div>
+        <h3 class="path-step-role">
+          觀察者
+          <span class="en">Observer</span>
+        </h3>
+        <div class="path-step-time">每週 0–2 小時</div>
+        <p class="path-step-desc">
+          先看清楚再決定。閱讀競賽地圖、加入交流群、
+          參與一次線上說明；這個階段不承諾交付，也不會被分派正式任務。
+        </p>
+        <ul class="path-step-list">
+          <li>取得完整競賽地圖公開版與討論版摘要</li>
+          <li>參與一次 30 分鐘對接會議</li>
+          <li>選擇是否旁聽一次 pitch / 產品討論</li>
+          <li>不承諾任何交付，可隨時退出</li>
+        </ul>
+      </div>
+
+      <div class="path-step">
+        <div class="path-step-month">Phase 1 · 小型試跑期</div>
+        <h3 class="path-step-role">
+          協作者
+          <span class="en">Contributor</span>
+        </h3>
+        <div class="path-step-time">每週 2–4 小時</div>
+        <p class="path-step-desc">
+          選一個小型任務試作，不直接承擔整場比賽結果。
+          你可能負責一頁競品研究、一段學生需求訪談、一張流程圖，或一版 pitch deck 小節。
+        </p>
+        <ul class="path-step-list">
+          <li>完成一個小型、明確、可交接的任務</li>
+          <li>負責市場研究 / 簡報 / 流程整理其中一塊</li>
+          <li>參與內部 review，而非一開始就公開上台</li>
+          <li>產出可放進作品集的研究或企劃片段</li>
+        </ul>
+      </div>
+
+      <div class="path-step">
+        <div class="path-step-month">Phase 2 · 旗艦準備期</div>
+        <h3 class="path-step-role">
+          專案成員
+          <span class="en">Project Member</span>
+        </h3>
+        <div class="path-step-time">每週 4–6 小時以上</div>
+        <p class="path-step-desc">
+          在前期磨合完成後，才正式進入旗艦競賽準備。
+          這時會依能力與意願決定是否參與 U-Start、Hult Prize、GSV Cup 或其他較高強度賽道。
+        </p>
+        <ul class="path-step-list">
+          <li>參與一場旗艦競賽的核心素材整理</li>
+          <li>具備獨立完成子任務與交接的能力</li>
+          <li>進入實習 / 兼職 / 長期合作候選名單</li>
+          <li>累積跨競賽的個人 portfolio</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TAKEAWAY -->
+<section class="section">
+  <div class="section-tag">04 — 你會帶走什麼</div>
+  <h2 class="section-title">
+    不是「履歷上多一行」，<br>
+    是六樣帶得走的真實資產。
+    <span class="en">Six tangible assets, not a line on your CV.</span>
+  </h2>
+
+  <div class="takeaway-grid">
+    <div class="takeaway">
+      <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#1A5D94" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h4 class="takeaway-title">完整提案文件</h4>
+      <p class="takeaway-desc">
+        至少一份你親手參與撰寫、評審看過、有反饋紀錄的旗艦競賽提案——
+        中文與英文版本，皆可放進申研所、申國外、申實習的作品集。
+      </p>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8M21 14V7h-7" stroke="#1A5D94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4 class="takeaway-title">真實的市場數據經驗</h4>
+      <p class="takeaway-desc">
+        你會接觸到 TBD Studio 既有的升學顧問實體業務數據——
+        學習如何從真實的用戶行為與成交資料，反推出可信的市場分析，
+        而不是憑空編造的 PPT 數字。
+      </p>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 4v16m8-8H4" stroke="#1A5D94" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h4 class="takeaway-title">至少一次 pitch 實戰</h4>
+      <p class="takeaway-desc">
+        從製作簡報、演練、到正式上台的完整流程。
+        並有機會在 6 月戰國策決賽、9 月 Hult Prize On-Campus、
+        2027 年 4 月 GSV Cup Demo Day 等真實場合中現場參與。
+      </p>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="4" stroke="#1A5D94" stroke-width="2"/><path d="M5 21v-2a4 4 0 014-4h6a4 4 0 014 4v2" stroke="#1A5D94" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <h4 class="takeaway-title">跨校跨齡的協作網絡</h4>
+      <p class="takeaway-desc">
+        你會跟學生、社會人士、後端公司的營運與技術成員一起工作。
+        這個混合結構本身就是 TBD 的「制度套利」武器，
+        也是你未來最重要的人脈起點。
+      </p>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z M14 2v6h6 M16 13H8 M16 17H8 M10 9H8" stroke="#1A5D94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4 class="takeaway-title">商業模型訓練</h4>
+      <p class="takeaway-desc">
+        從 SDG 對接、Hult Prize 的社會企業敘事，到 GSV Cup 的 5 P's 評選框架，
+        到 U-Start 的政府補助申請邏輯——
+        你會學會看評審要什麼，而不只是寫自己想寫的。
+      </p>
+    </div>
+
+    <div class="takeaway">
+      <div class="takeaway-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5" stroke="#1A5D94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <h4 class="takeaway-title">長期合作的可能性</h4>
+      <p class="takeaway-desc">
+        穩定交付、主動推進的人，會被優先考慮進入 TBD Studio 或關聯公司的
+        正式實習、兼職或長期合作候選名單。
+        這不是承諾，是已經有先例的路徑。
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ROLES -->
+<section id="roles" class="section">
+  <div class="section-tag">05 — 三種參與身份</div>
+  <h2 class="section-title">
+    不需要一開始就 all in。<br>
+    從哪個身份開始，由你決定。
+    <span class="en">Choose your level of commitment.</span>
+  </h2>
+
+  <div class="roles">
+    <div class="role">
+      <div class="role-tag">Tier 01</div>
+      <h3 class="role-name">
+        觀察者
+        <span class="en">Observer</span>
+      </h3>
+      <div class="role-meta">
+        <div class="role-meta-item">
+          <div class="role-meta-label">每週投入</div>
+          <div class="role-meta-value">0–2 hrs</div>
+        </div>
+        <div class="role-meta-item">
+          <div class="role-meta-label">承諾期</div>
+          <div class="role-meta-value">無</div>
+        </div>
+      </div>
+      <ul class="role-list">
+        <li>取得完整競賽地圖</li>
+        <li>加入初步交流群</li>
+        <li>參與 Q&amp;A 與見面會</li>
+        <li>觀察正在進行的專案</li>
+        <li>隨時可進、可退</li>
+      </ul>
+    </div>
+
+    <div class="role featured">
+      <div class="role-tag">Tier 02 · 低壓試作</div>
+      <h3 class="role-name">
+        協作者
+        <span class="en">Contributor</span>
+      </h3>
+      <div class="role-meta">
+        <div class="role-meta-item">
+          <div class="role-meta-label">每週投入</div>
+          <div class="role-meta-value">2–4 hrs</div>
+        </div>
+        <div class="role-meta-item">
+          <div class="role-meta-label">承諾期</div>
+          <div class="role-meta-value">2–6 週</div>
+        </div>
+      </div>
+      <ul class="role-list">
+        <li>先接一個小型共創任務</li>
+        <li>完成一塊明確、可交接的 deliverable</li>
+        <li>參與每週 sync 與內部 review</li>
+        <li>產出可放進作品集的文件</li>
+        <li>確認是否適合進入下一階段</li>
+      </ul>
+    </div>
+
+    <div class="role">
+      <div class="role-tag">Tier 03</div>
+      <h3 class="role-name">
+        專案成員
+        <span class="en">Project Member</span>
+      </h3>
+      <div class="role-meta">
+        <div class="role-meta-item">
+          <div class="role-meta-label">每週投入</div>
+          <div class="role-meta-value">4–6 hrs</div>
+        </div>
+        <div class="role-meta-item">
+          <div class="role-meta-label">承諾期</div>
+          <div class="role-meta-value">3–6 個月</div>
+        </div>
+      </div>
+      <ul class="role-list">
+        <li>參與一場旗艦競賽提案</li>
+        <li>跨競賽、跨季度持續投入</li>
+        <li>具備獨立帶領子任務的能力</li>
+        <li>進入實習 / 兼職候選名單</li>
+        <li>長期合作路徑的潛在起點</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- APPLY FLOW -->
+<section id="apply" class="section">
+  <div class="section-tag">06 — 加入流程</div>
+  <h2 class="section-title">
+    五步進場。<br>
+    先觀察，再決定。
+    <span class="en">Observe first. Commit later.</span>
+  </h2>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">01</div>
+      <h4 class="flow-title">閱讀說明文件</h4>
+      <p class="flow-desc">你已經在這一步了。</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">02</div>
+      <h4 class="flow-title">先加入觀察名單</h4>
+      <p class="flow-desc">5 題，告訴我們你能投入什麼、想做什麼。</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">03</div>
+      <h4 class="flow-title">加入交流群</h4>
+      <p class="flow-desc">先了解團隊與目前在跑的競賽。</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">04</div>
+      <h4 class="flow-title">30 分鐘對接會議</h4>
+      <p class="flow-desc">雙向選擇，看是否要進入特定專案。</p>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">05</div>
+      <h4 class="flow-title">進入專案執行群</h4>
+      <p class="flow-desc">先從小任務開始，不直接扛整場競賽。</p>
+    </div>
+  </div>
+
+  <div class="hero-ctas" style="margin-top:44px;justify-content:center;">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScfdTZaaTeXPj12r5p8cHxm_WJCHyrR_CUw9lmL5AUd4CcR_A/viewform" target="_blank" rel="noopener" class="btn-primary">
+      填寫觀察者 / 共創者意願表單
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <span class="btn-meta">Google Form · 不代表正式加入</span>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="section-tag">07 — 常見問題</div>
+  <h2 class="section-title">
+    你會問的，我們先答了。
+    <span class="en">FAQ.</span>
+  </h2>
+
+  <div class="faq-list">
+    <details class="faq">
+      <summary>我沒有打過商業競賽，可以加入嗎？</summary>
+      <div class="faq-body">
+        <strong>可以，而且第一階段本來就不是要你立刻比賽。</strong>
+        我們不是徵有經驗的選手，而是找願意一起研究、整理與試作的人。
+        你會先學會如何讀競賽辦法、拆解評審偏好、整理案例與搭建 pitch deck，
+        等你熟悉後，才決定是否進入正式競賽任務。
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>會有薪資或獎金分配嗎？</summary>
+      <div class="faq-body">
+        <strong>觀察者與初期共創階段沒有底薪</strong>，因為這不是雇傭關係，也不會要求你承擔正式工作責任。
+        但若競賽得獎且有獎金，會按照貢獻度進行分配——這部分會在你進入專案執行群時，
+        以書面方式明確約定。<br><br>
+        如果未來進入<strong>正式合作、實習、兼職或商業專案</strong>，
+        會依任務性質討論薪資或股權安排。
+        我們不接受「無償永久勞工」的關係。
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>跟我在學校參加的競賽社團差別在哪？</summary>
+      <div class="faq-body">
+        三個結構性差別：<br>
+        <strong>一、我們有後端公司作為背書。</strong>
+        提案時你不用從零空想商業模式，
+        而是基於 TBD Studio 既有的教育服務經驗、流程資料與市場觀察去整理。<br>
+        <strong>二、我們先做競賽地圖，再決定是否下場。</strong>
+        學校社團常常什麼都打，我們會把競賽分成觀察型、練兵型與旗艦型。<br>
+        <strong>三、我們把關係設計成「觀察 → 試作 → 長期合作」的漸進路徑，</strong>
+        不是「畢業就解散」的一次性團隊。
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>現在還沒有一批固定學生，會不會太早？</summary>
+      <div class="faq-body">
+        <strong>不會，因為第一批人的任務不是立刻服務學生或扛比賽。</strong>
+        現階段更像 Founding Sprint：一起整理競賽資料、教育場景、服務流程、案例模板與 pitch deck。
+        等素材與角色穩定後，才會進入正式試跑與競賽申請。
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>我不是商學院 / 不是台清交，會被歧視嗎？</summary>
+      <div class="faq-body">
+        <strong>不會。</strong>我們需要的是會做研究的人、會把複雜問題寫清楚的人、
+        會把 PPT 做漂亮的人、會跟陌生人對接的人——
+        這些能力跟科系完全無關。事實上，雙軌學生 + 社會人士的混合結構，
+        正是 U-Start 與 GSEA 等競賽資格要求的關鍵——<strong>多元背景反而是制度套利的優勢。</strong>
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>如果我中途想退出怎麼辦？</summary>
+      <div class="faq-body">
+        <strong>觀察者階段</strong>可以隨時無理由退出，不需要解釋。<br>
+        <strong>協作者階段</strong>進入專案後，希望你能完成當前的 deliverable 後再退出，
+        因為我們會根據你的承諾安排其他人的任務分配。我們不會綁人，但需要負責任的交接。
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>TBD Studio 的「後端公司」到底是什麼？</summary>
+      <div class="faq-body">
+        TBD Studio 是一個結合教育顧問、專案企劃、品牌行銷與創業實作的團隊；
+        背後另有<strong>關聯行號與公司資源</strong>，可支援不同類型的教育、創業與商業專案推進。
+        詳細的公司結構會在你進入專案執行群之後逐步揭露，
+        因為這是涉及實際營運的資訊。
+      </div>
+    </details>
+
+    <details class="faq">
+      <summary>會打的競賽就只有那 4 個嗎？</summary>
+      <div class="faq-body">
+        <strong>不是。</strong>4 個是旗艦目標（投入 70% 資源），
+        另外還有戰國策、新創事業獎、EdTech Award Taiwan、GSEA、K-Startup Grand Challenge、
+        Tools Competition 等共 10+ 場我們有打算下場的競賽。
+        完整名單與每一場的契合度評估都在
+        <a href="competitions.html" style="color:var(--accent);border-bottom:1px solid var(--accent)">競賽地圖深度頁</a>。
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="final-inner">
+    <div class="final-eyebrow">Cohort 2026-2027 · Recruiting Now</div>
+    <h2 class="final-title">
+      先加入觀察，再決定要不要下場。
+      <span class="en">Observe first. Commit later.</span>
+    </h2>
+    <p class="final-sub">
+      我們會持續追蹤 QS Reimagine、U-Start、Hult Prize 與 GSV Cup，
+      但第一批成員不需要一加入就承擔投件壓力。<br>
+      你可以先加入觀察名單，理解方向、看見任務，再決定是否深入。
+    </p>
+    <div class="final-ctas">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScfdTZaaTeXPj12r5p8cHxm_WJCHyrR_CUw9lmL5AUd4CcR_A/viewform" target="_blank" rel="noopener" class="btn-yellow">
+        先加入觀察名單 →
+      </a>
+      <a href="competitions.html" class="btn-outline">
+        先看完整競賽地圖
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand">TBD.</div>
+      <div class="foot-meta" style="margin-top:6px">Define · Design · Deliver Your Next Move.</div>
+    </div>
+    <div class="foot-meta">
+      Competition Lab · Cohort 2026-2027<br>
+      © 2026 TBD Studio. All Rights Reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+// Live countdown to QS Reimagine Education deadline (2026-07-31)
+(function(){
+  const target = new Date('2026-07-31T23:59:59');
+  const el = document.getElementById('cdNum');
+  if (!el) return;
+  function tick(){
+    const now = new Date();
+    const diff = Math.max(0, Math.ceil((target - now)/(1000*60*60*24)));
+    el.textContent = diff;
+  }
+  tick();
+  setInterval(tick, 60*1000);
+})();
+</script>
+</body>
+</html>
