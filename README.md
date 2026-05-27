@@ -6,6 +6,7 @@ Static HTML launch version for TBD Competition Lab.
 
 - `index.html` — landing page
 - `competitions.html` — competition map
+- `Meeting_260529.html` — 第一次會前簡報（2026.05.29 餐敘前說明包，個人化定向頁）
 
 ## Local preview
 

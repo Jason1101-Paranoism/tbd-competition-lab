@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="TBD Competition Lab 餐敘前說明包：來意、可信度、Why us / Why you、可能競賽題目、發起人資源與星期五議程。" name="description"/>
+<title>TBD Competition Lab｜Pre-meeting Brief v4.1｜Focus Mode</title>
+<style>
+
+    :root{
+      --bg:#f7f1e7;
+      --bg-2:#efe2d2;
+      --paper:#fffdf8;
+      --paper-2:#fff8ed;
+      --ink:#24201b;
+      --muted:#756b61;
+      --muted-2:#9a8d7f;
+      --line:#e8d9c8;
+      --line-strong:#d8bea1;
+      --accent:#b87333;
+      --accent-dark:#7b4317;
+      --accent-soft:#f3ddc2;
+      --green:#315f53;
+      --green-soft:#e6f0eb;
+      --blue:#536d8b;
+      --blue-soft:#e8eef7;
+      --warn:#fff2d7;
+      --ok:#eef7ef;
+      --danger:#8a4a31;
+      --shadow-sm:0 8px 24px rgba(66,43,22,.08);
+      --shadow:0 22px 70px rgba(66,43,22,.14);
+      --shadow-card:0 14px 36px rgba(66,43,22,.09);
+      --r-xl:34px;
+      --r-lg:26px;
+      --r-md:18px;
+      --r-sm:13px;
+      --page:1160px;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(circle at 4% 0%,rgba(184,115,51,.20),transparent 28%),
+        radial-gradient(circle at 94% 4%,rgba(49,95,83,.16),transparent 32%),
+        linear-gradient(180deg,var(--bg),#fbf7ef 44%,var(--bg));
+      color:var(--ink);
+      line-height:1.72;
+      letter-spacing:.01em;
+      text-rendering:optimizeLegibility;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background-image:linear-gradient(rgba(124,75,30,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(124,75,30,.035) 1px,transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.22));
+    }
+    a{color:var(--accent-dark);text-decoration:none;border-bottom:1px solid rgba(124,75,30,.26);transition:.18s ease}
+    a:hover{color:#4d260d;border-bottom-color:rgba(77,38,13,.55)}
+    p{margin:0 0 12px}.muted{color:var(--muted)}
+    b,strong{font-weight:850}
+    .skip-link{position:absolute;left:-999px;top:10px;background:#fff;color:var(--ink);padding:10px 14px;border-radius:999px;z-index:99;box-shadow:var(--shadow-sm)}
+    .skip-link:focus{left:14px}
+    .progress-bar{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg,var(--accent),var(--green),var(--blue));z-index:1000;box-shadow:0 0 18px rgba(184,115,51,.35)}
+    .page{max-width:var(--page);margin:0 auto;padding:34px 22px 82px}
+    .hero{
+      background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(255,248,237,.90) 52%,rgba(241,223,199,.76));
+      border:1px solid var(--line);
+      border-radius:var(--r-xl);
+      box-shadow:var(--shadow);
+      padding:44px 44px 30px;
+      position:relative;overflow:hidden;
+    }
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.28),transparent 45%);pointer-events:none}
+    .hero:after{content:"";position:absolute;right:-110px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(184,115,51,.17),rgba(184,115,51,.03) 68%,transparent 70%)}
+    .hero>*{position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.66);font-size:13px;color:var(--muted);font-weight:800;box-shadow:0 5px 18px rgba(66,43,22,.05)}
+    h1{font-size:clamp(31px,4.2vw,52px);line-height:1.12;margin:18px 0 16px;letter-spacing:-.05em;max-width:940px}
+    .subtitle{font-size:18px;color:#4d453e;max-width:910px;margin:0 0 24px}
+    .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;margin-top:26px;position:relative;z-index:1}
+    .notice{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:24px;padding:20px 22px;box-shadow:var(--shadow-sm)}
+    .notice strong{color:var(--accent-dark)}
+    .quick-meta{display:grid;gap:10px}
+    .meta-item{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:20px;padding:14px 16px;font-size:14px;color:#4d453e;box-shadow:0 8px 20px rgba(66,43,22,.045)}
+    .nav{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 4px;padding:10px;border:1px solid rgba(232,217,200,.75);background:rgba(255,253,248,.62);border-radius:999px;backdrop-filter:blur(14px)}
+    .nav a{border:1px solid var(--line);background:rgba(255,255,255,.74);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:800;color:#5d4b3b;box-shadow:0 4px 14px rgba(66,43,22,.04)}
+    .nav a:hover,.nav a.active{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-1px)}
+    .sticky-nav{position:sticky;top:12px;z-index:50;margin:16px 0 2px;display:flex;justify-content:center}
+    .sticky-nav .nav{margin:0;box-shadow:0 16px 42px rgba(66,43,22,.12);background:rgba(255,253,248,.82)}
+    section{
+      margin-top:26px;
+      background:rgba(255,253,248,.94);
+      border:1px solid var(--line);
+      border-radius:var(--r-lg);
+      box-shadow:var(--shadow-card);
+      padding:32px;
+      position:relative;overflow:hidden;
+    }
+    section:before{content:"";position:absolute;left:0;top:0;width:100%;height:5px;background:linear-gradient(90deg,var(--accent),rgba(49,95,83,.85),rgba(83,109,139,.75));opacity:.72}
+    section[id]::after{content:attr(data-kicker);position:absolute;right:24px;top:12px;color:rgba(117,107,97,.10);font-size:58px;font-weight:950;letter-spacing:-.06em;line-height:1;pointer-events:none}
+    .section-title{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px;position:relative;z-index:1}
+    h2{font-size:clamp(23px,2.6vw,31px);line-height:1.22;margin:0;letter-spacing:-.035em}
+    .section-note{color:var(--muted);font-size:14px;max-width:430px;margin:2px 0 0;text-align:right}
+    h3{font-size:20px;margin:18px 0 10px;color:#2f2a25;letter-spacing:-.015em}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .card{background:rgba(255,255,255,.90);border:1px solid var(--line);border-radius:22px;padding:19px;box-shadow:0 10px 26px rgba(66,43,22,.055);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(66,43,22,.10);border-color:var(--line-strong)}
+    .card.soft{background:linear-gradient(180deg,var(--green-soft),#fff)}.card.blue{background:linear-gradient(180deg,var(--blue-soft),#fff)}.card.warn{background:var(--warn)}
+    .card h3,.card h4{margin-top:0}.card h4{font-size:16px;margin:0 0 8px;color:#332b24}.card p:last-child{margin-bottom:0}
+    .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.tag{display:inline-flex;border-radius:999px;padding:5px 10px;background:#f3eadf;border:1px solid var(--line);font-size:12px;color:#5b4d42;font-weight:800}
+    .table-wrap{width:100%;overflow:auto;border-radius:20px;border:1px solid var(--line);background:#fff;box-shadow:0 10px 28px rgba(66,43,22,.05)}
+    .table-wrap table{min-width:760px;border:0;border-radius:0}
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:18px;background:#fff;border:1px solid var(--line);font-size:14px}
+    th,td{text-align:left;vertical-align:top;padding:14px 15px;border-bottom:1px solid var(--line)}
+    th{background:#f3eadf;color:#4d3b2d;font-size:13px;position:sticky;top:0;z-index:1}tr:last-child td{border-bottom:none}tbody tr:hover td{background:#fffaf1}
+    ul{margin:8px 0 0;padding-left:1.2em}li{margin:5px 0}.compact li{margin:3px 0}
+    .profile{display:grid;grid-template-columns:.78fr 1.22fr;gap:18px;align-items:start}.profile-head{background:linear-gradient(180deg,#fff,var(--paper-2));border:1px solid var(--line);border-radius:24px;padding:22px;position:sticky;top:98px;box-shadow:var(--shadow-sm)}.name{font-size:27px;font-weight:950;letter-spacing:-.03em;margin:0 0 4px}.role{color:var(--accent-dark);font-weight:850;margin-bottom:14px}.metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px 0}.metric{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px}.metric b{display:block;font-size:22px;line-height:1.1}.metric span{font-size:12px;color:var(--muted)}
+    .timeline{display:grid;gap:10px}.event{display:grid;grid-template-columns:115px 1fr;gap:12px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;box-shadow:0 7px 18px rgba(66,43,22,.035)}.event .date{font-weight:850;color:var(--green);font-size:13px}.event p{margin:0;color:#4d453e}
+    .agenda{counter-reset:item;display:grid;gap:10px}.agenda .step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 7px 18px rgba(66,43,22,.035)}.agenda .step:before{counter-increment:item;content:counter(item);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),#23443b);color:#fff;font-weight:950;box-shadow:0 10px 18px rgba(49,95,83,.18)}.step b{display:block;margin-bottom:2px}
+    .callout{border-left:5px solid var(--accent);background:#fff;border-radius:18px;padding:18px 20px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 10px 26px rgba(66,43,22,.045)}
+    .footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}.print-note{font-size:12px;color:var(--muted);margin-top:8px}
+    .back-top{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;border:0;box-shadow:0 14px 36px rgba(36,32,27,.22);cursor:pointer;opacity:0;transform:translateY(8px);transition:.2s ease;z-index:80}.back-top.show{opacity:1;transform:translateY(0)}
+
+    /* Focus Mode: dim non-current reading sections and mirror focus state in navigation */
+    main.focus-mode-on section{
+      transition:opacity .28s ease, filter .28s ease, transform .28s ease, box-shadow .28s ease;
+    }
+    main.focus-mode-on section.is-dimmed{
+      opacity:.44;
+      filter:grayscale(.42) saturate(.72) brightness(.98);
+      box-shadow:0 8px 24px rgba(66,43,22,.045);
+    }
+    main.focus-mode-on section.is-active{
+      opacity:1;
+      filter:none;
+      transform:translateY(-1px);
+      box-shadow:0 24px 72px rgba(66,43,22,.16);
+      border-color:var(--line-strong);
+    }
+    main.focus-mode-on section.is-dimmed:hover,
+    main.focus-mode-on section.is-dimmed:focus-within{
+      opacity:.82;
+      filter:grayscale(.12) saturate(.9);
+    }
+    .nav a.is-dimmed{
+      opacity:.46;
+      filter:grayscale(.35);
+    }
+    .nav a.in-view{
+      background:rgba(49,95,83,.12);
+      border-color:rgba(49,95,83,.28);
+      color:#264c42;
+    }
+    .nav a.active{
+      opacity:1;
+      filter:none;
+    }
+    @media(max-width:720px){
+      main.focus-mode-on section.is-dimmed{opacity:.58;filter:grayscale(.25) saturate(.82)}
+    }
+    @media(prefers-reduced-motion:reduce){
+      main.focus-mode-on section,.nav a{transition:none}
+    }
+    @media(max-width:980px){.hero-grid,.grid-3{grid-template-columns:1fr 1fr}.profile{grid-template-columns:1fr}.profile-head{position:static}.sticky-nav{top:0}.sticky-nav .nav{justify-content:flex-start;overflow:auto;flex-wrap:nowrap;border-radius:0;width:calc(100% + 44px);margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px}.sticky-nav .nav a{white-space:nowrap}}
+    @media(max-width:720px){.page{padding:18px 14px 70px}.hero{padding:28px 22px 22px;border-radius:26px}.hero-grid,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.section-title{display:block}.section-note{text-align:left;margin-top:8px}.subtitle{font-size:16px}section{padding:24px 18px;border-radius:22px}.event{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.nav{flex-wrap:nowrap;overflow:auto;border-radius:18px;justify-content:flex-start}.nav a{white-space:nowrap}.table-wrap{margin-left:-4px;margin-right:-4px}.back-top{right:12px;bottom:12px}}
+    @media(max-width:430px){.metric-grid{grid-template-columns:1fr}h1{letter-spacing:-.04em}.eyebrow{font-size:12px;align-items:flex-start}.notice,.meta-item,.card{border-radius:18px}.hero:after{display:none}}
+    @media print{body{background:#fff}.progress-bar,.sticky-nav,.back-top{display:none}.page{max-width:none;padding:0}.hero,section{box-shadow:none;break-inside:avoid}.nav{display:none}a{border-bottom:none;color:inherit}.table-wrap{overflow:visible;border:0;box-shadow:none}.table-wrap table{min-width:0}section:before,section[id]::after{display:none}}
+
+  </style>
+</head>
+<body><div aria-hidden="true" class="progress-bar"></div><a class="skip-link" href="#purpose">跳到主要內容</a>
+<main class="page">
+<header class="hero">
+<div class="eyebrow">TBD Competition Lab｜Pre-meeting Brief v4｜For 橙偉 &amp; Reina</div>
+<h1>星期五見面前，先讓你們知道：我們為什麼找你們，以及這個 Lab 值不值得一起看下去。</h1>
+<p class="subtitle">這份文件不是正式招募書，也不是要大家馬上承諾加入團隊；它是一份餐敘前說明包，幫助你們快速理解 TBD Studio 的基礎、Competition Lab 的來意、兩位發起人的資源，以及你們可能切入的地方。</p>
+<div class="hero-grid">
+<div class="notice">
+<strong>核心訊息：</strong>我們不是從 0 開始想一個比賽題目，而是把已經在營運的教育服務、真實學生與家長需求、內部 SOP、信任素材、AI 工具與跨域經驗，整理成能參加教育創新／EdTech／商業競賽的提案與產品方向。
+        </div>
+<div class="quick-meta">
+<div class="meta-item"><b>見面定位：</b>低壓認識、交換觀察、確認是否有興趣後續小任務。</div>
+<div class="meta-item"><b>目前階段：</b>Build first, compete later；先整理素材與題目，再選競賽。</div>
+<div class="meta-item"><b>參與方式：</b>可從 Observer 開始，不需要一開始承諾正式成員。</div>
+</div>
+</div>
+</header><div aria-label="頁面導覽" class="sticky-nav"><nav class="nav">
+<a href="#purpose">文件目的</a><a href="#why-us">Why us</a><a href="#why-you">Why you</a><a href="#topics">可能題目</a><a href="#resources">資源基礎</a><a href="#profiles">發起人</a><a href="#agenda">星期五議程</a><a href="#links">連結</a>
+</nav></div>
+<section data-kicker="01" id="purpose">
+<div class="section-title"><h2>這份文件的目的</h2><p class="section-note">讓餐敘更有效率，也讓你們不會在資訊不足的情況下被動聽簡報。</p></div>
+<div class="grid-3">
+<div class="card"><h4>1｜先理解來意</h4><p>我們希望先讓你們知道，這個群組與餐敘不是要馬上分派任務，而是希望找有教育、社會影響力、商業競賽或新創興趣的人一起觀察與共創。</p></div>
+<div class="card"><h4>2｜看見真實基礎</h4><p>目前已有 TBD Studio 的教育服務、網站、客戶案例、初談模板、信任素材庫與團隊管理流程，不是單純為了比賽臨時包裝題目。</p></div>
+<div class="card"><h4>3｜找到你們的位置</h4><p>我們想在見面前先提出橙偉與 Reina 可能能切入的角度，讓星期五討論更像雙向探索，而不是單向說明。</p></div>
+</div>
+</section>
+<section data-kicker="02" id="why-us">
+<div class="section-title"><h2>Why us｜為什麼我們有資格發起這個 Lab？</h2><p class="section-note">不是保證得獎，而是證明這個題目有真實基礎、可執行資源與發展潛力。</p></div>
+<div aria-label="可水平捲動的表格" class="table-wrap" role="region"><table>
+<thead><tr><th>競賽會問的問題</th><th>我們目前已有的基礎</th><th>對參賽潛力的意義</th></tr></thead>
+<tbody>
+<tr><td>這是不是一個真問題？</td><td>TBD Studio 已實際服務升學、備審、面試、Portfolio 與研究所推甄需求，接觸學生與家長在申請焦慮、經歷整理、策略判斷上的痛點。</td><td>題目不是空泛的 EdTech 想像，而是從真實服務場景回推。</td></tr>
+<tr><td>有沒有商業模式與現金流？</td><td>目前已有固定客戶、已實現營收與已簽約分期收入；服務包含初談、策略諮詢、備審重構、面試訓練等。</td><td>能把競賽提案從「理念」推進到「可收費、可交付、可驗收」的服務與產品。</td></tr>
+<tr><td>能不能做出 Demo 或 MVP？</td><td>已有官網、Competition Lab 網站、信任素材庫、初談模板、落點分析方向、Notion 週會管理與 AI 輔助流程規劃。</td><td>可以發展成 Portfolio Roadmap、顧問流程 SaaS、AI 輔助自我敘事工具等具體原型。</td></tr>
+<tr><td>團隊有沒有帶人與整合能力？</td><td>樂瑞具備教育顧問、研究、軟體與創業經驗；睿淵具備科管、資應、供應鏈、新創營運與資訊教育經驗。</td><td>能同時處理教育價值、商業模型、技術導入與營運落地。</td></tr>
+<tr><td>參與者能獲得什麼？</td><td>可參與競賽研究、案例分析、流程圖、使用者訪談、pitch deck、商業模式設計與產品規劃。</td><td>比單純打工更接近可展示的作品集與新創實戰經驗。</td></tr>
+</tbody>
+</table></div>
+<div class="callout" style="margin-top:16px"><b>誠實說法：</b>我們不會保證一定得獎，也不會把 Competition Lab 包裝成穩賺或保證履歷加分的機會。比較準確的說法是：這是一個已經有真實服務基礎、正在轉化成競賽題目與產品化方向的共創計畫，適合想累積作品、理解創業實務，並願意從小任務開始參與的人。</div>
+</section>
+<section data-kicker="03" id="why-you">
+<div class="section-title"><h2>Why you｜為什麼特別想邀請橙偉與 Reina？</h2><p class="section-note">我們不是只想找人幫忙，而是希望補上不同教育現場與跨文化視角。</p></div>
+<div class="grid-2">
+<div class="card soft">
+<h3>橙偉｜教育現場、成人學習與課程轉譯</h3>
+<p>你提到自己是中等教育學程學生、社大教師、偶爾接案講師。這個背景對我們很重要，因為 Competition Lab 不能只停留在顧問服務與商業包裝，還需要有人幫忙檢查教育現場是否真的成立。</p>
+<ul class="compact">
+<li>檢查題目是否貼近教師、學生、成人學習者的真實需求。</li>
+<li>協助把「升學策略」轉譯成教育價值與學習歷程設計。</li>
+<li>協助設計訪談問題、課程情境與使用者案例。</li>
+<li>從教育現場角度挑戰我們的 pitch deck：哪裡太商業？哪裡真的有幫助？</li>
+</ul>
+</div>
+<div class="card blue">
+<h3>Reina｜華語教育、跨文化溝通與國際敘事</h3>
+<p>你提到自己是華語教師，並剛接任華文所所學會長，也對教育創新與社會影響力有所琢磨。這能幫 Competition Lab 補上國際教育、語言學習與跨文化自我表達的角度。</p>
+<ul class="compact">
+<li>協助把「自我行銷」延伸到跨文化表達、國際學生支持與語言學習場景。</li>
+<li>補強 Hult Prize、QS Reimagine Education 等偏國際／社會影響力競賽的敘事。</li>
+<li>協助設計雙語工具包、跨文化 Portfolio 模板或語言學習者自我敘事流程。</li>
+<li>從華語教育與組織經營角度，協助檢查題目是否有更大的教育擴散性。</li>
+</ul>
+</div>
+</div>
+</section>
+<section data-kicker="04" id="topics">
+<div class="section-title"><h2>目前最可能發展的 3 個競賽題目方向</h2><p class="section-note">先把討論收斂成幾個可被研究、可被驗證、可被做成 Demo 的方向。</p></div>
+<div aria-label="可水平捲動的表格" class="table-wrap" role="region"><table>
+<thead><tr><th>題目方向</th><th>核心問題</th><th>可能產品／服務</th><th>適合競賽</th><th>需要你們協助的地方</th></tr></thead>
+<tbody>
+<tr><td><b>1. 升學歷程規劃系統</b></td><td>學生有很多經歷，但不知道如何整理成教授看得懂的能力主線。</td><td>Portfolio Roadmap、經歷盤點表、申請策略儀表板、反思與回饋節奏。</td><td>U-Start、GSV Cup、教育創新類競賽</td><td>教育現場情境、學生訪談、作品集評估標準。</td></tr>
+<tr><td><b>2. 教育顧問流程 SaaS</b></td><td>顧問服務常仰賴個人經驗，難以追蹤、標準化與交接。</td><td>初談模板、信任素材庫、週追蹤 Dashboard、顧問任務系統、AI 摘要輔助。</td><td>U-Start、校園創業競賽、SaaS / AI 工具賽道</td><td>流程可用性測試、角色需求整理、服務邊界討論。</td></tr>
+<tr><td><b>3. 跨文化自我敘事工具包</b></td><td>國際學生、語言學習者或轉換跑道者，常難以用第二語言整理自己的故事與能力。</td><td>雙語自我敘事模板、跨文化 Portfolio 框架、面試／申請表達工具包。</td><td>Hult Prize、QS Reimagine Education、社會影響力競賽</td><td>華語教育、跨文化溝通、國際教育案例。</td></tr>
+</tbody>
+</table></div>
+</section>
+<section data-kicker="05" id="resources">
+<div class="section-title"><h2>我們能提供的資源基礎</h2><p class="section-note">把履歷與營運經驗轉成實際可以支持 Competition Lab 的資源。</p></div>
+<div class="grid-3">
+<div class="card"><h4>真實服務場景</h4><p>TBD Studio 已有學生與家長服務案例，涵蓋備審、面試、研究所推甄、Portfolio 與升學策略。</p></div>
+<div class="card"><h4>商業流程素材</h4><p>已建立初談模板、信任素材庫、成功案例、Sales Roadmap、Landing Page、落點分析與週會管理方向。</p></div>
+<div class="card"><h4>技術與 AI 能力</h4><p>具備網站建置、資料表設計、流程自動化、AI 提示詞與 LLM 整合經驗，可支援 Demo 或 MVP。</p></div>
+<div class="card"><h4>教育現場經驗</h4><p>兩位發起人皆有長期教學、輔導與學生溝通經驗，能理解學生、家長、教師與顧問之間的資訊落差。</p></div>
+<div class="card"><h4>競賽與業師經驗</h4><p>樂瑞曾擔任 Care Assist 業師，協助商業企劃書、競賽 SOP、招募、賽後檢討與營運規劃。</p></div>
+<div class="card"><h4>商業落地與供應鏈</h4><p>睿淵具備 9 年實體新創營運與供應鏈操盤經驗，能檢查成本結構、定價策略與落地可行性。</p></div>
+</div>
+</section>
+<section data-kicker="06" id="profiles">
+<div class="section-title"><h2>發起人背景｜不是履歷展示，而是資源說明</h2><p class="section-note">以下聚焦於能支持 Competition Lab 的經驗、資源與判斷力。</p></div>
+<div class="profile" style="margin-bottom:22px">
+<aside class="profile-head">
+<p class="name">林樂瑞</p>
+<div class="role">Strategy / Product / Education / Research</div>
+<p>清華學院學士班實驗教育方案背景，目前就讀清華大學運動科學研究所，並具研究、教育顧問、數位轉型與多項創業經驗。</p>
+<div class="metric-grid">
+<div class="metric"><b>40%</b><span>Reportify 協助工程報告流程縮短幅度</span></div>
+<div class="metric"><b>10 次</b><span>Care Assist 業師諮詢輔導紀錄</span></div>
+<div class="metric"><b>4 項</b><span>創業／營運參與場域</span></div>
+<div class="metric"><b>5–6 年</b><span>工作與實務經驗累積</span></div>
+</div>
+<div class="tag-row"><span class="tag">教育顧問</span><span class="tag">數據分析</span><span class="tag">AI / Web</span><span class="tag">創業業師</span></div>
+</aside>
+<div>
+<div class="card">
+<h3>能帶給 Lab 的資源</h3>
+<ul>
+<li><b>真實教育需求：</b>長期接觸高中、大學、研究所與職涯轉換相關的自我行銷需求，能將抽象的升學焦慮轉成可設計的服務流程。</li>
+<li><b>產品化能力：</b>曾參與 Reportify 自動化報告系統開發，熟悉需求轉譯、模組化架構、使用者流程與跨部門協作。</li>
+<li><b>創業與業師經驗：</b>參與伊諾方舟、伊諾頓、成渠教育與咖啡廳營運架構；曾以 Care Assist 業師身份協助商業企劃、競賽 SOP、團隊招募與賽後檢討。</li>
+<li><b>研究與敘事能力：</b>具備神經科學、動作分析、數理經濟與資料分析背景，可協助團隊把洞察整理成清楚的問題定義、方法與佐證。</li>
+</ul>
+</div>
+<div class="timeline" style="margin-top:12px">
+<div class="event"><div class="date">學術背景</div><p>清華學院學士班 21 級，實驗教育方案；清華大學運動科學研究所，並規劃系統神經科學方向。</p></div>
+<div class="event"><div class="date">企業專案</div><p>亞新工程顧問數位轉型研發工程師，參與 Python + Qt 報告自動化系統 Reportify。</p></div>
+<div class="event"><div class="date">創業角色</div><p>伊諾方舟技術平台、伊諾頓市場與才藝服務、成渠教育課程與營運、咖啡廳流程與數據優化。</p></div>
+<div class="event"><div class="date">業師紀錄</div><p>Care Assist 諮詢輔導包含技術支持、營運規劃、企劃書章節、競賽資料、招募與 SOP。</p></div>
+</div>
+</div>
+</div>
+<div class="profile">
+<aside class="profile-head">
+<p class="name">周睿淵</p>
+<div class="role">Business Feasibility / AI Enablement / Operations</div>
+<p>清華科技管理學士班與資訊系統與應用研究所背景，兼具商管與前沿資訊技術，長期投入實體新創與資訊教育。</p>
+<div class="metric-grid">
+<div class="metric"><b>9 年</b><span>速速製衣實體新創營運</span></div>
+<div class="metric"><b>50,000+</b><span>累計出貨件數</span></div>
+<div class="metric"><b>8 年</b><span>核果資訊教育經驗</span></div>
+<div class="metric"><b>50+</b><span>實體輔導學生人數</span></div>
+</div>
+<div class="tag-row"><span class="tag">科管</span><span class="tag">資應</span><span class="tag">供應鏈</span><span class="tag">AI 導入</span></div>
+</aside>
+<div>
+<div class="card">
+<h3>能帶給 Lab 的資源</h3>
+<ul>
+<li><b>商業可行性判斷：</b>具備實體新創營運與供應鏈操盤經驗，能協助檢查成本結構、定價策略、採購與落地可行性。</li>
+<li><b>資訊教育洞察：</b>深耕資訊教育，能理解學生學習痛點，也能協助將 AI 工具導入教育流程。</li>
+<li><b>AI 技術導入：</b>可協助團隊思考如何將 Claude、Gemini 等 LLM 工具整合進升學顧問、資料整理與流程自動化中。</li>
+<li><b>組織與營運統籌：</b>具備成渠教育、竹中軟研社長等團隊管理經驗，可協助建立高效內部協作、資源分配與專案推進節奏。</li>
+</ul>
+</div>
+<div class="timeline" style="margin-top:12px">
+<div class="event"><div class="date">學歷背景</div><p>國立清華大學資訊系統與應用研究所碩士；國立清華大學科技管理學士班學士。</p></div>
+<div class="event"><div class="date">速速製衣</div><p>9 年實體服飾新創營運，主導對接中國供應鏈與國際採購，累計出貨突破 50,000 件。</p></div>
+<div class="event"><div class="date">核果資訊</div><p>8 年資訊教育經驗，實體輔導超過 50 位學生，熟悉教育產品、課程與學習者需求。</p></div>
+<div class="event"><div class="date">成渠教育</div><p>參與組織管理與營運統籌，協助團隊建立資金流、任務分配與內部協作機制。</p></div>
+</div>
+</div>
+</div>
+</section>
+<section data-kicker="07" id="tasks">
+<div class="section-title"><h2>如果只想先試試，可以從這些小任務開始</h2><p class="section-note">小任務的目的不是壓榨，而是幫彼此確認合作節奏與興趣。</p></div>
+<div class="grid-3">
+<div class="card"><h4>半頁競賽案例</h4><p>選一個 EdTech / 教育創新競賽案例，整理它的問題、解法、商業模式與得獎原因。</p></div>
+<div class="card"><h4>一個使用者情境</h4><p>挑一個學生、家長、教師或國際學生角色，寫出他在申請／學習／自我表達中的痛點。</p></div>
+<div class="card"><h4>一頁 Pitch Review</h4><p>看一頁簡報，幫忙指出哪裡聽不懂、哪裡缺證據、哪裡不夠像教育創新。</p></div>
+<div class="card"><h4>五題訪談問題</h4><p>協助設計學生、教師、家長或語言學習者訪談題目，讓我們驗證需求。</p></div>
+<div class="card"><h4>一張流程圖</h4><p>把 TBD 目前的初談、診斷、任務、回饋、交付流程畫成一張可討論的圖。</p></div>
+<div class="card"><h4>一份競品比較</h4><p>找 2–3 個教育顧問、Portfolio 工具或 EdTech 產品，整理差異與可借鏡處。</p></div>
+</div>
+</section>
+<section data-kicker="08" id="agenda">
+<div class="section-title"><h2>星期五餐敘預計聊什麼？</h2><p class="section-note">目標是彼此理解，而不是當場決定誰要做什麼。</p></div>
+<div class="agenda">
+<div class="step"><div><b>彼此簡單認識</b><p>先聊背景、興趣與最近關注的教育／創業／競賽議題。</p></div></div>
+<div class="step"><div><b>說明 TBD Studio 與 Competition Lab 的來意</b><p>分享目前服務基礎、網站、營運狀況與想發展成競賽題目的原因。</p></div></div>
+<div class="step"><div><b>討論 3 個可能題目方向</b><p>升學歷程規劃系統、教育顧問流程 SaaS、跨文化自我敘事工具包。</p></div></div>
+<div class="step"><div><b>聽橙偉與 Reina 的觀察</b><p>從教育現場、成人學習、華語教育、跨文化溝通與社會影響力角度補強。</p></div></div>
+<div class="step"><div><b>確認是否有興趣先從 Observer 或小任務開始</b><p>不需要當場承諾正式成員，可以先用小任務測試合作感。</p></div></div>
+<div class="step"><div><b>決定是否需要第二次對接</b><p>如果有興趣，再安排下一次 30 分鐘討論具體任務與時程。</p></div></div>
+</div>
+</section>
+<section data-kicker="09" id="links">
+<div class="section-title"><h2>參考連結</h2><p class="section-note">可先快速瀏覽，不需要全部讀完。</p></div>
+<div class="grid-3">
+<div class="card"><h4>TBD Competition Lab</h4><p><a href="index.html">共創計畫主頁（index）</a> · <a href="competitions.html">完整競賽地圖</a></p><p class="muted">共創觀察、競賽地圖、參與路徑與報名方向。線上版：<a href="https://tbd-competition-lab.vercel.app" target="_blank">tbd-competition-lab.vercel.app</a></p></div>
+<div class="card"><h4>TBD Studio 官方網站</h4><p><a href="https://tbd-web.vercel.app/" target="_blank">https://tbd-web.vercel.app/</a></p><p class="muted">升學策略、備審、面試、Portfolio 與服務定位。</p></div>
+<div class="card"><h4>TBD Studio 官方 Line</h4><p><a href="https://line.me/R/ti/p/@756etimx" target="_blank">https://line.me/R/ti/p/@756etimx</a></p><p class="muted">對外諮詢與服務入口。</p></div>
+</div>
+<p class="print-note">Version v4｜Prepared for pre-meeting alignment before Friday dinner. 建議用途：餐敘前丟群組／私訊，讓對方先掌握來意與討論方向。</p>
+</section>
+<div class="footer">TBD Competition Lab｜Build first, compete later. Low-pressure observation, evidence-based creation.</div>
+</main>
+<button aria-label="回到頁首" class="back-top" type="button">↑</button><script data-ui="v4-ux">
+
+    const progress = document.querySelector('.progress-bar');
+    const backTop = document.querySelector('.back-top');
+    const main = document.querySelector('main.page');
+    const navLinks = [...document.querySelectorAll('.nav a')];
+    const sections = navLinks
+      .map(a => document.querySelector(a.getAttribute('href')))
+      .filter(Boolean);
+    const sectionById = Object.fromEntries(sections.map(section => [section.id, section]));
+    const navById = Object.fromEntries(navLinks.map(a => [a.getAttribute('href')?.replace('#',''), a]));
+    const ratios = new Map(sections.map(section => [section.id, 0]));
+
+    if(main) main.classList.add('focus-mode-on');
+
+    function setFocusState(current){
+      sections.forEach(section => {
+        const isActive = section.id === current;
+        section.classList.toggle('is-active', isActive);
+        section.classList.toggle('is-dimmed', !isActive);
+        section.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+      navLinks.forEach(a => {
+        const id = a.getAttribute('href')?.replace('#','');
+        const isActive = id === current;
+        const isInView = (ratios.get(id) || 0) > 0.08;
+        a.classList.toggle('active', isActive);
+        a.classList.toggle('in-view', isInView && !isActive);
+        a.classList.toggle('is-dimmed', !isActive && !isInView);
+        if(isActive) a.setAttribute('aria-current', 'true');
+        else a.removeAttribute('aria-current');
+      });
+    }
+
+    function pickCurrentSection(){
+      const viewportFocusY = window.innerHeight * 0.38;
+      let best = sections[0]?.id;
+      let bestScore = -Infinity;
+      for(const section of sections){
+        const rect = section.getBoundingClientRect();
+        const visibleRatio = ratios.get(section.id) || 0;
+        const distance = Math.abs(rect.top - viewportFocusY);
+        const score = visibleRatio * 1000 - distance;
+        if(score > bestScore){
+          bestScore = score;
+          best = section.id;
+        }
+      }
+      return best;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => ratios.set(entry.target.id, entry.intersectionRatio));
+      setFocusState(pickCurrentSection());
+    }, {
+      root:null,
+      threshold:[0, .05, .1, .18, .25, .35, .5, .65, .8, 1],
+      rootMargin:'-12% 0px -42% 0px'
+    });
+    sections.forEach(section => observer.observe(section));
+
+    function updateUI(){
+      const doc = document.documentElement;
+      const scrolled = doc.scrollTop || document.body.scrollTop;
+      const max = doc.scrollHeight - doc.clientHeight;
+      if(progress) progress.style.width = max > 0 ? `${(scrolled / max) * 100}%` : '0%';
+      if(backTop) backTop.classList.toggle('show', scrolled > 520);
+      setFocusState(pickCurrentSection());
+    }
+    window.addEventListener('scroll', updateUI, {passive:true});
+    window.addEventListener('resize', updateUI);
+    updateUI();
+    if(backTop){
+      backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+    }
+
+  </script></body>
+</html>
