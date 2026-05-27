@@ -167,6 +167,40 @@
     @media(max-width:980px){.hero-grid,.grid-3{grid-template-columns:1fr 1fr}.profile{grid-template-columns:1fr}.profile-head{position:static}.sticky-nav{top:0}.sticky-nav .nav{justify-content:flex-start;overflow:auto;flex-wrap:nowrap;border-radius:0;width:calc(100% + 44px);margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px}.sticky-nav .nav a{white-space:nowrap}}
     @media(max-width:720px){.page{padding:18px 14px 70px}.hero{padding:28px 22px 22px;border-radius:26px}.hero-grid,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.section-title{display:block}.section-note{text-align:left;margin-top:8px}.subtitle{font-size:16px}section{padding:24px 18px;border-radius:22px}.event{grid-template-columns:1fr}.metric-grid{grid-template-columns:1fr 1fr}.nav{flex-wrap:nowrap;overflow:auto;border-radius:18px;justify-content:flex-start}.nav a{white-space:nowrap}.table-wrap{margin-left:-4px;margin-right:-4px}.back-top{right:12px;bottom:12px}}
     @media(max-width:430px){.metric-grid{grid-template-columns:1fr}h1{letter-spacing:-.04em}.eyebrow{font-size:12px;align-items:flex-start}.notice,.meta-item,.card{border-radius:18px}.hero:after{display:none}}
+    /* ===== Mobile nav guidance enhancement ===== */
+    @media(max-width:980px){
+      .sticky-nav::before,
+      .sticky-nav::after{
+        content:"";position:absolute;top:0;bottom:0;width:28px;
+        pointer-events:none;z-index:5;transition:opacity .22s ease;
+      }
+      .sticky-nav::before{left:-22px;background:linear-gradient(90deg,rgba(255,253,248,.96),rgba(255,253,248,0))}
+      .sticky-nav::after{right:-22px;background:linear-gradient(-90deg,rgba(255,253,248,.96),rgba(255,253,248,0))}
+      .sticky-nav.at-start::before{opacity:0}
+      .sticky-nav.at-end::after{opacity:0}
+      .sticky-nav .nav{counter-reset:nav-item;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+      .sticky-nav .nav::-webkit-scrollbar{display:none}
+      .sticky-nav .nav a{counter-increment:nav-item;position:relative;padding:9px 13px 9px 30px;font-size:12.5px}
+      .sticky-nav .nav a::before{
+        content:counter(nav-item,decimal-leading-zero);
+        position:absolute;left:8px;top:50%;transform:translateY(-50%);
+        font-family:ui-monospace,"SF Mono",Menlo,monospace;
+        font-size:9.5px;font-weight:700;letter-spacing:.05em;line-height:1;
+        color:rgba(117,107,97,.7);background:rgba(243,234,223,.9);
+        border-radius:999px;padding:2px 5px;
+        transition:background .18s ease,color .18s ease;
+      }
+      .sticky-nav .nav a.in-view::before{background:rgba(49,95,83,.22);color:#264c42}
+      .sticky-nav .nav a.active::before{background:var(--accent);color:#fff}
+      .sticky-nav .nav a.active{box-shadow:0 10px 24px rgba(36,32,27,.28)}
+      section[id]::after{font-size:44px;right:16px;top:10px}
+    }
+    @media(max-width:430px){
+      .sticky-nav .nav a{padding:8px 12px 8px 28px;font-size:12px}
+      .sticky-nav .nav a::before{font-size:9px;padding:2px 4px;left:6px}
+      section[id]::after{font-size:36px}
+    }
+
     @media print{body{background:#fff}.progress-bar,.sticky-nav,.back-top{display:none}.page{max-width:none;padding:0}.hero,section{box-shadow:none;break-inside:avoid}.nav{display:none}a{border-bottom:none;color:inherit}.table-wrap{overflow:visible;border:0;box-shadow:none}.table-wrap table{min-width:0}section:before,section[id]::after{display:none}}
 
   </style>
@@ -369,8 +403,32 @@
     const sectionById = Object.fromEntries(sections.map(section => [section.id, section]));
     const navById = Object.fromEntries(navLinks.map(a => [a.getAttribute('href')?.replace('#',''), a]));
     const ratios = new Map(sections.map(section => [section.id, 0]));
+    const navContainer = document.querySelector('.sticky-nav .nav');
+    const stickyNav = document.querySelector('.sticky-nav');
+    let lastCurrent = null;
 
     if(main) main.classList.add('focus-mode-on');
+
+    function scrollActiveNavIntoView(){
+      if(!navContainer) return;
+      if(navContainer.scrollWidth <= navContainer.clientWidth + 2) return;
+      const activeLink = navContainer.querySelector('a.active');
+      if(!activeLink) return;
+      const target = activeLink.offsetLeft - (navContainer.clientWidth - activeLink.offsetWidth) / 2;
+      const max = navContainer.scrollWidth - navContainer.clientWidth;
+      const left = Math.max(0, Math.min(max, target));
+      navContainer.scrollTo({left, behavior:'smooth'});
+    }
+
+    function updateNavEdges(){
+      if(!navContainer || !stickyNav) return;
+      if(navContainer.scrollWidth <= navContainer.clientWidth + 2){
+        stickyNav.classList.add('at-start','at-end');
+        return;
+      }
+      stickyNav.classList.toggle('at-start', navContainer.scrollLeft <= 4);
+      stickyNav.classList.toggle('at-end', navContainer.scrollLeft >= navContainer.scrollWidth - navContainer.clientWidth - 4);
+    }
 
     function setFocusState(current){
       sections.forEach(section => {
@@ -389,6 +447,10 @@
         if(isActive) a.setAttribute('aria-current', 'true');
         else a.removeAttribute('aria-current');
       });
+      if(current !== lastCurrent){
+        lastCurrent = current;
+        scrollActiveNavIntoView();
+      }
     }
 
     function pickCurrentSection(){
@@ -428,7 +490,12 @@
     }
     window.addEventListener('scroll', updateUI, {passive:true});
     window.addEventListener('resize', updateUI);
+    window.addEventListener('resize', updateNavEdges);
+    if(navContainer){
+      navContainer.addEventListener('scroll', updateNavEdges, {passive:true});
+    }
     updateUI();
+    updateNavEdges();
     if(backTop){
       backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
     }
