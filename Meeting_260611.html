@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="TBD Competition Lab 第一次成員會議：合作框架、角色分工、第一階段 KPI 與交付規則。" name="description"/>
+<title>TBD Competition Lab｜Kick-off Meeting｜2026.06.11</title>
+<style>
+
+    :root{
+      --bg:#f7f1e7;
+      --bg-2:#efe2d2;
+      --paper:#fffdf8;
+      --paper-2:#fff8ed;
+      --ink:#24201b;
+      --muted:#756b61;
+      --muted-2:#9a8d7f;
+      --line:#e8d9c8;
+      --line-strong:#d8bea1;
+      --accent:#b87333;
+      --accent-dark:#7b4317;
+      --accent-soft:#f3ddc2;
+      --green:#315f53;
+      --green-soft:#e6f0eb;
+      --blue:#536d8b;
+      --blue-soft:#e8eef7;
+      --warn:#fff2d7;
+      --ok:#eef7ef;
+      --shadow-sm:0 8px 24px rgba(66,43,22,.08);
+      --shadow:0 22px 70px rgba(66,43,22,.14);
+      --shadow-card:0 14px 36px rgba(66,43,22,.09);
+      --r-xl:34px;
+      --r-lg:26px;
+      --r-md:18px;
+      --r-sm:13px;
+      --page:1160px;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(circle at 4% 0%,rgba(184,115,51,.20),transparent 28%),
+        radial-gradient(circle at 94% 4%,rgba(49,95,83,.16),transparent 32%),
+        linear-gradient(180deg,var(--bg),#fbf7ef 44%,var(--bg));
+      color:var(--ink);
+      line-height:1.72;
+      letter-spacing:.01em;
+      text-rendering:optimizeLegibility;
+    }
+    body:before{
+      content:"";
+      position:fixed;inset:0;pointer-events:none;z-index:-1;
+      background-image:linear-gradient(rgba(124,75,30,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(124,75,30,.035) 1px,transparent 1px);
+      background-size:34px 34px;
+      mask-image:linear-gradient(180deg,rgba(0,0,0,.95),rgba(0,0,0,.22));
+    }
+    a{color:var(--accent-dark);text-decoration:none;border-bottom:1px solid rgba(124,75,30,.26);transition:.18s ease}
+    a:hover{color:#4d260d;border-bottom-color:rgba(77,38,13,.55)}
+    p{margin:0 0 12px}.muted{color:var(--muted)}
+    b,strong{font-weight:850}
+    .skip-link{position:absolute;left:-999px;top:10px;background:#fff;color:var(--ink);padding:10px 14px;border-radius:999px;z-index:99;box-shadow:var(--shadow-sm)}
+    .skip-link:focus{left:14px}
+    .progress-bar{position:fixed;top:0;left:0;height:4px;width:0%;background:linear-gradient(90deg,var(--accent),var(--green),var(--blue));z-index:1000;box-shadow:0 0 18px rgba(184,115,51,.35)}
+    .page{max-width:var(--page);margin:0 auto;padding:34px 22px 82px}
+    .hero{
+      background:linear-gradient(135deg,rgba(255,253,248,.98),rgba(255,248,237,.90) 52%,rgba(241,223,199,.76));
+      border:1px solid var(--line);
+      border-radius:var(--r-xl);
+      box-shadow:var(--shadow);
+      padding:44px 44px 30px;
+      position:relative;overflow:hidden;
+    }
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.28),transparent 45%);pointer-events:none}
+    .hero:after{content:"";position:absolute;right:-110px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(49,95,83,.14),rgba(49,95,83,.03) 68%,transparent 70%)}
+    .hero>*{position:relative;z-index:1}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:rgba(255,255,255,.66);font-size:13px;color:var(--muted);font-weight:800;box-shadow:0 5px 18px rgba(66,43,22,.05)}
+    h1{font-size:clamp(28px,3.8vw,46px);line-height:1.14;margin:18px 0 16px;letter-spacing:-.045em;max-width:940px}
+    .subtitle{font-size:17px;color:#4d453e;max-width:880px;margin:0 0 24px}
+    .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;margin-top:26px;position:relative;z-index:1}
+    .notice{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:24px;padding:20px 22px;box-shadow:var(--shadow-sm)}
+    .notice strong{color:var(--green)}
+    .quick-meta{display:grid;gap:10px}
+    .meta-item{background:rgba(255,255,255,.72);border:1px solid var(--line);border-radius:20px;padding:14px 16px;font-size:14px;color:#4d453e;box-shadow:0 8px 20px rgba(66,43,22,.045)}
+    .nav{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 4px;padding:10px;border:1px solid rgba(232,217,200,.75);background:rgba(255,253,248,.62);border-radius:999px;backdrop-filter:blur(14px)}
+    .nav a{border:1px solid var(--line);background:rgba(255,255,255,.74);border-radius:999px;padding:8px 13px;font-size:13px;font-weight:800;color:#5d4b3b;box-shadow:0 4px 14px rgba(66,43,22,.04)}
+    .nav a:hover,.nav a.active{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-1px)}
+    .sticky-nav{position:sticky;top:12px;z-index:50;margin:16px 0 2px;display:flex;justify-content:center}
+    .sticky-nav .nav{margin:0;box-shadow:0 16px 42px rgba(66,43,22,.12);background:rgba(255,253,248,.82)}
+    section{
+      margin-top:26px;
+      background:rgba(255,253,248,.94);
+      border:1px solid var(--line);
+      border-radius:var(--r-lg);
+      box-shadow:var(--shadow-card);
+      padding:32px;
+      position:relative;overflow:hidden;
+    }
+    section:before{content:"";position:absolute;left:0;top:0;width:100%;height:5px;background:linear-gradient(90deg,var(--green),rgba(83,109,139,.85),rgba(184,115,51,.75));opacity:.72}
+    section[id]::after{content:attr(data-kicker);position:absolute;right:24px;top:12px;color:rgba(117,107,97,.10);font-size:58px;font-weight:950;letter-spacing:-.06em;line-height:1;pointer-events:none}
+    .section-title{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px;position:relative;z-index:1}
+    h2{font-size:clamp(22px,2.5vw,29px);line-height:1.22;margin:0;letter-spacing:-.03em}
+    .section-note{color:var(--muted);font-size:14px;max-width:430px;margin:2px 0 0;text-align:right}
+    h3{font-size:19px;margin:20px 0 10px;color:#2f2a25;letter-spacing:-.015em}
+    h3:first-child{margin-top:0}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+    .card{background:rgba(255,255,255,.90);border:1px solid var(--line);border-radius:22px;padding:19px;box-shadow:0 10px 26px rgba(66,43,22,.055);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 18px 36px rgba(66,43,22,.10);border-color:var(--line-strong)}
+    .card.soft{background:linear-gradient(180deg,var(--green-soft),#fff)}
+    .card.blue{background:linear-gradient(180deg,var(--blue-soft),#fff)}
+    .card.warn{background:var(--warn)}
+    .card h3,.card h4{margin-top:0}.card h4{font-size:16px;margin:0 0 8px;color:#332b24}.card p:last-child{margin-bottom:0}
+    .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .tag{display:inline-flex;border-radius:999px;padding:5px 10px;background:#f3eadf;border:1px solid var(--line);font-size:12px;color:#5b4d42;font-weight:800}
+    .tag.green{background:var(--green-soft);border-color:rgba(49,95,83,.25);color:var(--green)}
+    .tag.blue{background:var(--blue-soft);border-color:rgba(83,109,139,.25);color:var(--blue)}
+    table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+    .table-wrap{width:100%;overflow:auto;border-radius:20px;border:1px solid var(--line);background:#fff;box-shadow:0 10px 28px rgba(66,43,22,.05)}
+    .table-wrap table{min-width:700px;border:0;border-radius:0}
+    th,td{text-align:left;vertical-align:top;padding:13px 15px;border-bottom:1px solid var(--line)}
+    th{background:#f3eadf;color:#4d3b2d;font-size:13px;position:sticky;top:0;z-index:1}
+    tr:last-child td{border-bottom:none}
+    tbody tr:hover td{background:#fffaf1}
+    ul{margin:8px 0 0;padding-left:1.2em}li{margin:5px 0}.compact li{margin:3px 0}
+    .callout{border-left:5px solid var(--green);background:#fff;border-radius:18px;padding:18px 20px;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line);box-shadow:0 10px 26px rgba(66,43,22,.045)}
+    .callout.accent{border-left-color:var(--accent)}
+    .callout.blue{border-left-color:var(--blue)}
+
+    /* Level badges */
+    .level-row{display:grid;gap:10px}
+    .level{display:grid;grid-template-columns:72px 1fr;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 15px;box-shadow:0 6px 16px rgba(66,43,22,.03)}
+    .level-badge{text-align:center;font-weight:950;font-size:13px;border-radius:10px;padding:8px 6px;line-height:1.2}
+    .level-badge.l0{background:#f3eadf;color:var(--muted)}
+    .level-badge.l1{background:var(--accent-soft);color:var(--accent-dark)}
+    .level-badge.l2{background:var(--green-soft);color:var(--green)}
+    .level-badge.l3{background:var(--blue-soft);color:var(--blue)}
+    .level-badge.l4{background:#2a2522;color:#f7f1e7}
+    .level p{margin:0;font-size:14px;color:#4d453e}
+    .level b{display:block;font-size:15px;margin-bottom:2px}
+
+    /* Agenda steps */
+    .agenda{counter-reset:item;display:grid;gap:10px}
+    .agenda .step{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:start;background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:0 7px 18px rgba(66,43,22,.035)}
+    .agenda .step:before{counter-increment:item;content:counter(item);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--green),#23443b);color:#fff;font-weight:950;box-shadow:0 10px 18px rgba(49,95,83,.18)}
+    .step b{display:block;margin-bottom:2px}
+
+    /* Action items */
+    .action-list{display:grid;gap:10px}
+    .action{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;box-shadow:0 6px 16px rgba(66,43,22,.035);display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+    .action-check{width:20px;height:20px;border-radius:5px;border:2px solid var(--line-strong);margin-top:2px;flex-shrink:0}
+    .action p{margin:0;font-size:14px;color:#4d453e}
+    .action b{display:block;font-size:15px;margin-bottom:2px}
+    .action .owner{display:inline-flex;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;background:var(--green-soft);color:var(--green);border:1px solid rgba(49,95,83,.2);margin-top:4px}
+
+    /* Member chips */
+    .members{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .member{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:7px 13px;background:#fff;border:1px solid var(--line);font-size:13px;font-weight:800;box-shadow:0 4px 12px rgba(66,43,22,.04)}
+    .member .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .dot-founder{background:var(--accent)}
+    .dot-core{background:var(--green)}
+    .dot-observer{background:var(--muted-2)}
+
+    .footer{margin-top:26px;color:var(--muted);font-size:13px;text-align:center}
+    .print-note{font-size:12px;color:var(--muted);margin-top:8px}
+    .back-top{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:#fff;border:0;box-shadow:0 14px 36px rgba(36,32,27,.22);cursor:pointer;opacity:0;transform:translateY(8px);transition:.2s ease;z-index:80}
+    .back-top.show{opacity:1;transform:translateY(0)}
+
+    /* Focus Mode */
+    main.focus-mode-on section{transition:opacity .28s ease,filter .28s ease,transform .28s ease,box-shadow .28s ease}
+    main.focus-mode-on section.is-dimmed{opacity:.32;filter:grayscale(.55) saturate(.65) brightness(.9);box-shadow:0 8px 24px rgba(66,43,22,.04)}
+    main.focus-mode-on section.is-active{opacity:1;filter:none;transform:translateY(-1px);box-shadow:0 24px 72px rgba(66,43,22,.16);border-color:var(--line-strong)}
+    main.focus-mode-on section.is-dimmed:hover,main.focus-mode-on section.is-dimmed:focus-within{opacity:.82;filter:grayscale(.12) saturate(.9)}
+    .nav a.is-dimmed{opacity:.46;filter:grayscale(.35)}
+    .nav a.in-view{background:rgba(49,95,83,.12);border-color:rgba(49,95,83,.28);color:#264c42}
+    .nav a.active{opacity:1;filter:none}
+
+    @media(max-width:720px){main.focus-mode-on section.is-dimmed{opacity:.46;filter:grayscale(.4) saturate(.78) brightness(.94)}}
+    @media(prefers-reduced-motion:reduce){main.focus-mode-on section,.nav a{transition:none}}
+    @media(max-width:980px){
+      .hero-grid,.grid-3{grid-template-columns:1fr 1fr}
+      .sticky-nav{top:0}
+      .sticky-nav .nav{justify-content:flex-start;overflow:auto;flex-wrap:nowrap;border-radius:0;width:calc(100% + 44px);margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px}
+      .sticky-nav .nav a{white-space:nowrap}
+    }
+    @media(max-width:720px){
+      .page{padding:18px 14px 70px}
+      .hero{padding:28px 22px 22px;border-radius:26px}
+      .hero-grid,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+      .section-title{display:block}.section-note{text-align:left;margin-top:8px}
+      .subtitle{font-size:16px}
+      section{padding:24px 18px;border-radius:22px}
+      .nav{flex-wrap:nowrap;overflow:auto;border-radius:18px;justify-content:flex-start}
+      .nav a{white-space:nowrap}
+      .back-top{right:12px;bottom:12px}
+      .level{grid-template-columns:60px 1fr}
+    }
+    @media(max-width:980px){
+      .sticky-nav::before,.sticky-nav::after{content:"";position:absolute;top:0;bottom:0;width:28px;pointer-events:none;z-index:5;transition:opacity .22s ease}
+      .sticky-nav::before{left:-22px;background:linear-gradient(90deg,rgba(255,253,248,.96),rgba(255,253,248,0))}
+      .sticky-nav::after{right:-22px;background:linear-gradient(-90deg,rgba(255,253,248,.96),rgba(255,253,248,0))}
+      .sticky-nav.at-start::before{opacity:0}
+      .sticky-nav.at-end::after{opacity:0}
+      .sticky-nav .nav{counter-reset:nav-item;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+      .sticky-nav .nav::-webkit-scrollbar{display:none}
+      .sticky-nav .nav a{counter-increment:nav-item;position:relative;padding:9px 13px 9px 30px;font-size:12.5px}
+      .sticky-nav .nav a::before{content:counter(nav-item,decimal-leading-zero);position:absolute;left:8px;top:50%;transform:translateY(-50%);font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:9.5px;font-weight:700;letter-spacing:.05em;line-height:1;color:rgba(117,107,97,.7);background:rgba(243,234,223,.9);border-radius:999px;padding:2px 5px;transition:background .18s ease,color .18s ease}
+      .sticky-nav .nav a.in-view::before{background:rgba(49,95,83,.22);color:#264c42}
+      .sticky-nav .nav a.active::before{background:var(--accent);color:#fff}
+      .sticky-nav .nav a.active{box-shadow:0 10px 24px rgba(36,32,27,.28)}
+      section[id]::after{font-size:44px;right:16px;top:10px}
+    }
+    @media print{body{background:#fff}.progress-bar,.sticky-nav,.back-top{display:none}.page{max-width:none;padding:0}.hero,section{box-shadow:none;break-inside:avoid}.nav{display:none}a{border-bottom:none;color:inherit}.table-wrap{overflow:visible;border:0;box-shadow:none}.table-wrap table{min-width:0}section:before,section[id]::after{display:none}}
+
+</style>
+</head>
+<body><div aria-hidden="true" class="progress-bar"></div><a class="skip-link" href="#status">跳到主要內容</a>
+<main class="page">
+
+<header class="hero">
+<div class="eyebrow">TBD Competition Lab｜Kick-off Meeting｜2026.06.11（四）21:00–22:00</div>
+<h1>第一波成員合作框架與後續規劃</h1>
+<p class="subtitle">確立競賽團隊定位、權責劃分、交付規則與後續執行策略。這份文件同時是本次會議的議程，也是可留存的合作說明書。</p>
+<div class="hero-grid">
+<div class="notice">
+<strong>本階段定位：</strong>TBD Studio / TBD Competition Lab 已具備初步營運基礎——網站、品牌定位、成功案例、服務流程、文件系統與競賽準備資料。<b>本階段並非從零開始發想商業模式</b>，而是建立一支能將既有成果轉譯成競賽提案、簡報、企劃書與資源申請資料的核心小組。
+</div>
+<div class="quick-meta">
+<div class="meta-item"><b>時間：</b>2026.06.11（四）21:00–22:00</div>
+<div class="meta-item"><b>地點：</b>教育館 105</div>
+<div class="meta-item"><b>性質：</b>Kick-off — 對焦框架、確認分工、建立後續節奏</div>
+</div>
+</div>
+
+<div class="members" style="margin-top:22px">
+<div class="member"><span class="dot dot-founder"></span>林樂瑞　發起人</div>
+<div class="member"><span class="dot dot-founder"></span>周睿淵　發起人</div>
+<div class="member"><span class="dot dot-core"></span>橙偉　核心成員</div>
+<div class="member"><span class="dot dot-core"></span>Reina　核心成員</div>
+<div class="member"><span class="dot dot-observer"></span>惠平　Observer（L0）</div>
+</div>
+</header>
+
+<div aria-label="頁面導覽" class="sticky-nav"><nav class="nav">
+<a href="#status">現況基礎</a><a href="#positioning">合作定位</a><a href="#roles">角色分工</a><a href="#kpi">第一階段 KPI</a><a href="#returns">回報模式</a><a href="#levels">成員分級</a><a href="#agenda">今晚議程</a><a href="#actions">Action Items</a>
+</nav></div>
+
+<section data-kicker="01" id="status">
+<div class="section-title"><h2>目前狀態｜我們站在哪裡</h2><p class="section-note">不是從 0 開始，而是把既有成果整理成競賽語言。</p></div>
+<div class="grid-3">
+<div class="card"><h4>營運基礎</h4><p>TBD Studio 已有固定客戶、已實現營收與已簽約分期收入；服務涵蓋備審、面試、研究所推甄、Portfolio 與升學策略。</p></div>
+<div class="card"><h4>素材與工具</h4><p>已建立官網、Competition Lab 網站、信任素材庫、成功案例、初談模板、落點分析方向、Notion 週會管理與 AI 輔助流程規劃。</p></div>
+<div class="card"><h4>競賽研究地圖</h4><p>已完成 30+ 個教育創新競賽的研究、排名與時程整理，確認四大旗艦競賽方向：U-Start、GSV Cup、Hult Prize、QS Reimagine。</p></div>
+</div>
+<div class="callout" style="margin-top:16px"><b>核心任務定位：</b>Competition Lab 第一波成員的主要工作，是將上述既有素材整理、摘要、轉譯、視覺化，協助完成投件與簡報——而不是重新發明商業模式或從零建立服務。</div>
+</section>
+
+<section data-kicker="02" id="positioning">
+<div class="section-title"><h2>合作定位｜身分與邊界</h2><p class="section-note">說清楚，避免後續因期待落差產生摩擦。</p></div>
+<div class="grid-2">
+<div class="card">
+<h4>身分界定</h4>
+<p>本小組暫定為「TBD Competition Lab 第一波成員」。</p>
+<p>本合作<b>不等於</b>共同創辦人關係，也<b>不自動產生</b>股權、經營權或公司代表權。</p>
+</div>
+<div class="card warn">
+<h4>主要任務範圍</h4>
+<ul class="compact">
+<li>競賽資料整理與案例分析</li>
+<li>商業模式轉譯與文件撰寫</li>
+<li>Pitch Deck / One-pager 製作</li>
+<li>Q&A 題庫建立與模擬 Pitch</li>
+<li>KPI 追蹤與進度回報</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section data-kicker="03" id="roles">
+<div class="section-title"><h2>角色與責任劃分</h2><p class="section-note">發起人提供資料與決策，成員負責轉譯與交付。</p></div>
+<div aria-label="可水平捲動的表格" class="table-wrap" role="region"><table>
+<thead><tr><th>角色</th><th>主要責任</th><th>決策權限</th></tr></thead>
+<tbody>
+<tr>
+<td><b>發起人（公司方）</b><br><span class="muted" style="font-size:13px">林樂瑞 · 周睿淵</span></td>
+<td>提供既有資料、商模、營運脈絡、品牌方向、案例資料與審核交付物。</td>
+<td>最終決策權。資料使用、對外發布、競賽投件均需發起人確認。</td>
+</tr>
+<tr>
+<td><b>第一波成員</b><br><span class="muted" style="font-size:13px">橙偉 · Reina</span></td>
+<td>將既有資料整理、摘要、轉譯、視覺化，協助完成投件簡報與文件。</td>
+<td>模組內容與格式決策；跨模組協作需與發起人確認。</td>
+</tr>
+<tr>
+<td><b>Observer</b><br><span class="muted" style="font-size:13px">惠平（L0）</span></td>
+<td>旁聽、觀察 Lab 運作，評估是否有興趣承接小任務後正式升至 L1。</td>
+<td>無交付義務；可自願提供觀察回饋與建議。</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+
+<section data-kicker="04" id="kpi">
+<div class="section-title"><h2>第一階段 KPI｜試運行期 8–12 週</h2><p class="section-note">目標是建立可重複使用的競賽資產庫，而不是一次性衝刺。</p></div>
+<div class="grid-2">
+<div>
+<div class="level-row">
+<div class="card soft" style="padding:20px">
+<h4 style="color:var(--green)">競賽資產庫（標準包）</h4>
+<ul class="compact">
+<li>1 套完整競賽資產庫<br><span class="muted" style="font-size:13px">含：專案簡介、One-pager、成功案例證據包</span></li>
+<li>3–5 套 Pitch Deck 版本</li>
+<li>50 題以上 Q&A 題庫</li>
+<li>至少 2 次模擬 Pitch</li>
+</ul>
+</div>
+<div class="card blue" style="padding:20px">
+<h4 style="color:var(--blue)">競賽投件</h4>
+<ul class="compact">
+<li>整理 20 場以上可投遞競賽</li>
+<li>實際投遞 5–10 場</li>
+<li>得獎作為結果指標，但不作為唯一 KPI</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="card" style="align-self:start">
+<h4>交付原則</h4>
+<ul>
+<li>每項任務需有明確 <b>Owner</b>、<b>Deadline</b>、輸出格式、資料來源與審核人。</li>
+<li><b>「可用版本」優先於「完美版本」</b>——先求有，再求優化。</li>
+<li>進度以週為單位回報，格式待今晚討論確認。</li>
+<li>任何對外發布（投件、社群、媒體）皆需發起人最終審核。</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section data-kicker="05" id="returns">
+<div class="section-title"><h2>成員回報模式</h2><p class="section-note">不只是履歷加分，而是可被交付、可被使用、可被延伸的具體資產。</p></div>
+<div class="grid-3">
+<div class="card"><h4>競賽成果署名</h4><p>在投件資料、簡報、成果報告中列為貢獻成員，可作為可驗證的公開紀錄。</p></div>
+<div class="card"><h4>作品集與履歷使用權</h4><p>所負責的交付物（Pitch Deck、One-pager、Q&A 題庫等）可放入個人作品集與履歷，發起人可提供說明文件作為佐證。</p></div>
+<div class="card"><h4>參與證明與推薦</h4><p>試運行期結束後，發起人提供具名參與證明；表現突出者可提供推薦信或推薦機會。</p></div>
+<div class="card soft"><h4>競賽獎金分潤</h4><p>得獎或獲得資金資助時，依各成員實際貢獻比例進行分潤，具體比例在本次會議討論確認。</p></div>
+<div class="card blue"><h4>後續合作機會</h4><p>試運行表現良好者，後續可承接實習、正式專案合作或升級為更高層級的長期夥伴。</p></div>
+<div class="card"><h4>實戰學習資源</h4><p>全程接觸真實商業競賽備賽流程、AI 工具導入、商模設計與 pitch 迭代，比一般課程或活動組更接近新創實戰。</p></div>
+</div>
+</section>
+
+<section data-kicker="06" id="levels">
+<div class="section-title"><h2>成員分級制度｜L0–L4</h2><p class="section-note">升級依交付品質、穩定度與主動性判斷，不設固定時間表。</p></div>
+<div class="level-row">
+<div class="level">
+<div class="level-badge l0">L0<br>Observer</div>
+<div><b>觀察成員</b><p>旁聽、觀察，了解 Lab 運作。無交付義務，可自願提供回饋。<span class="tag" style="margin-top:6px;display:inline-flex">惠平目前位置</span></p></div>
+</div>
+<div class="level">
+<div class="level-badge l1">L1<br>Competition<br>Member</div>
+<div><b>競賽成員</b><p>承擔具體任務模組——競賽資料整理、案例分析、Pitch Deck 或 Q&A 題庫等，定期交付可用版本。<span class="tag green" style="margin-top:6px;display:inline-flex">橙偉 · Reina 目前位置</span></p></div>
+</div>
+<div class="level">
+<div class="level-badge l2">L2<br>Project Lead</div>
+<div><b>模組負責人</b><p>主責一個交付模組，能獨立推動進度、協調資源、對發起人回報，並帶動模組內成員。</p></div>
+</div>
+<div class="level">
+<div class="level-badge l3">L3<br>Core<br>Contributor</div>
+<div><b>核心貢獻者</b><p>長期穩定交付，具主動性，能跨模組協作並承擔部分決策。可參與更多內部策略討論。</p></div>
+</div>
+<div class="level">
+<div class="level-badge l4">L4<br>Venture<br>Partner</div>
+<div><b>長期合作夥伴</b><p>進入長期合作關係，可能涉及更深度的事業共創討論，包含但不限於股權、經營權等議題。</p></div>
+</div>
+</div>
+</section>
+
+<section data-kicker="07" id="agenda">
+<div class="section-title"><h2>今晚議程｜21:00–22:00</h2><p class="section-note">目標是對焦框架，不是解決所有問題。</p></div>
+<div class="agenda">
+<div class="step"><div><b>大家對參與本專案的期待</b><p>每人分享 1–2 分鐘：加入 Lab 最主要的動機是什麼？希望三個月後能拿到什麼？</p></div></div>
+<div class="step"><div><b>確認各成員可投入的時間與負責模組</b><p>討論每週可穩定投入的時數，以及初步有興趣的模組方向（簡報視覺、文案、財務、QA、訪談、設計等）。</p></div></div>
+<div class="step"><div><b>佈達第一階段交付物、回報模式與獎金分配原則</b><p>說明 KPI、署名、作品集使用權、參與證明，以及競賽獎金分潤的討論基礎。</p></div></div>
+<div class="step"><div><b>確立資料使用與保密邊界</b><p>哪些資料可放進作品集？哪些是內部機密不對外公開？確認各成員理解邊界並達成共識。</p></div></div>
+</div>
+</section>
+
+<section data-kicker="08" id="actions">
+<div class="section-title"><h2>Action Items｜會後待辦</h2><p class="section-note">每項需確認 Owner 與 Deadline。</p></div>
+<div class="action-list">
+<div class="action">
+<div class="action-check"></div>
+<div><b>確認 105 場地借用與當日準備</b><p>準備當晚要展示的「資料庫目錄」，讓成員有感於目前素材的完整程度。</p><span class="owner">發起人</span></div>
+</div>
+<div class="action">
+<div class="action-check"></div>
+<div><b>確認各成員每週可投入時數與模組偏好</b><p>會議結束後統整成一張分工對照表，作為第一週任務分派的基礎。</p><span class="owner">發起人 + 全體成員</span></div>
+</div>
+<div class="action">
+<div class="action-check"></div>
+<div><b>第一批任務派發</b><p>根據模組偏好與時數，在會後 48 小時內派發第一批具體任務（含 Owner、Deadline、輸出格式）。</p><span class="owner">發起人</span></div>
+</div>
+<div class="action">
+<div class="action-check"></div>
+<div><b>確認進度回報格式與頻率</b><p>決定週會或非同步回報的形式，並建立統一的進度追蹤位置（Notion / 群組）。</p><span class="owner">全體討論</span></div>
+</div>
+<div class="action">
+<div class="action-check"></div>
+<div><b>惠平後續評估</b><p>根據 20:00–21:00 的一對一結果，確認惠平是否有興趣承接入門任務，以及後續升至 L1 的可能時程。</p><span class="owner">發起人</span></div>
+</div>
+</div>
+</section>
+
+<div class="footer">
+  TBD Competition Lab｜Build first, compete later.<br>
+  <span class="print-note">Kick-off Meeting 2026.06.11 · 教育館 105 · 21:00–22:00</span>
+</div>
+</main>
+
+<button aria-label="回到頁首" class="back-top" type="button">↑</button>
+<script data-ui="kick-off">
+
+    const progress = document.querySelector('.progress-bar');
+    const backTop = document.querySelector('.back-top');
+    const main = document.querySelector('main.page');
+    const navLinks = [...document.querySelectorAll('.nav a')];
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const ratios = new Map(sections.map(s => [s.id, 0]));
+    const navContainer = document.querySelector('.sticky-nav .nav');
+    const stickyNav = document.querySelector('.sticky-nav');
+    let lastCurrent = null;
+
+    if(main) main.classList.add('focus-mode-on');
+
+    function scrollActiveNavIntoView(){
+      if(!navContainer) return;
+      if(navContainer.scrollWidth <= navContainer.clientWidth + 2) return;
+      const activeLink = navContainer.querySelector('a.active');
+      if(!activeLink) return;
+      const target = activeLink.offsetLeft - (navContainer.clientWidth - activeLink.offsetWidth) / 2;
+      const left = Math.max(0, Math.min(navContainer.scrollWidth - navContainer.clientWidth, target));
+      navContainer.scrollTo({left, behavior:'smooth'});
+    }
+
+    function updateNavEdges(){
+      if(!navContainer || !stickyNav) return;
+      if(navContainer.scrollWidth <= navContainer.clientWidth + 2){ stickyNav.classList.add('at-start','at-end'); return; }
+      stickyNav.classList.toggle('at-start', navContainer.scrollLeft <= 4);
+      stickyNav.classList.toggle('at-end', navContainer.scrollLeft >= navContainer.scrollWidth - navContainer.clientWidth - 4);
+    }
+
+    function setFocusState(current){
+      sections.forEach(section => {
+        const isActive = section.id === current;
+        section.classList.toggle('is-active', isActive);
+        section.classList.toggle('is-dimmed', !isActive);
+        section.setAttribute('aria-current', isActive ? 'true' : 'false');
+      });
+      navLinks.forEach(a => {
+        const id = a.getAttribute('href')?.replace('#','');
+        const isActive = id === current;
+        const isInView = (ratios.get(id) || 0) > 0.08;
+        a.classList.toggle('active', isActive);
+        a.classList.toggle('in-view', isInView && !isActive);
+        a.classList.toggle('is-dimmed', !isActive && !isInView);
+        if(isActive) a.setAttribute('aria-current','true'); else a.removeAttribute('aria-current');
+      });
+      if(current !== lastCurrent){ lastCurrent = current; scrollActiveNavIntoView(); }
+    }
+
+    function pickCurrentSection(){
+      const focusY = window.innerHeight * 0.38;
+      let best = sections[0]?.id, bestScore = -Infinity;
+      for(const s of sections){
+        const rect = s.getBoundingClientRect();
+        const score = (ratios.get(s.id) || 0) * 1000 - Math.abs(rect.top - focusY);
+        if(score > bestScore){ bestScore = score; best = s.id; }
+      }
+      return best;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => ratios.set(e.target.id, e.intersectionRatio));
+      setFocusState(pickCurrentSection());
+    }, { threshold:[0,.05,.1,.18,.25,.35,.5,.65,.8,1], rootMargin:'-12% 0px -42% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    function updateUI(){
+      const doc = document.documentElement;
+      const scrolled = doc.scrollTop || document.body.scrollTop;
+      const max = doc.scrollHeight - doc.clientHeight;
+      if(progress) progress.style.width = max > 0 ? `${(scrolled/max)*100}%` : '0%';
+      if(backTop) backTop.classList.toggle('show', scrolled > 520);
+      setFocusState(pickCurrentSection());
+    }
+    window.addEventListener('scroll', updateUI, {passive:true});
+    window.addEventListener('resize', () => { updateUI(); updateNavEdges(); });
+    if(navContainer) navContainer.addEventListener('scroll', updateNavEdges, {passive:true});
+    updateUI(); updateNavEdges();
+    if(backTop) backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+</script>
+</body>
+</html>
