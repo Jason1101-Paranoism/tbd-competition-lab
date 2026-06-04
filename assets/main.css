@@ -1,0 +1,35 @@
+/* TBD Competition Lab — Main site shared stylesheet
+   Used by: index.html, competitions.html
+   ================================================= */
+
+:root{
+  --ink:#0E1A33;
+  --ink-soft:#142143;
+  --mid:#5A6080;
+  --line:#D8D6E3;
+  --bg:#F5F3EC;
+  --bg-card:#FFFFFF;
+  --accent:#1A5D94;
+  --accent-deep:#0F3F66;
+  --yellow:#FAB748;
+  --yellow-deep:#E69A1E;
+  --red:#C24A3F;
+  --green:#3F7A5A;
+  --serif-en:'Fraunces',serif;
+  --serif-tc:'Noto Serif TC',serif;
+  --sans:'Manrope','Noto Sans TC',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+
+/* ── Reset ── */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
