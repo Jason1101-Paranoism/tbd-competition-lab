@@ -1,3 +1,6 @@
 node_modules/
 .vercel/
 .DS_Store
+
+# 抓下來的網站存檔（參考素材，非本專案產出）
+橙偉/
